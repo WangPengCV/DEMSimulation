@@ -1,33 +1,15 @@
 #pragma once
-struct Sphere
-{
-    int id;
-    double x;
-    double y;
-    double z;
+#include <set>
+#include <tuple>
+class PropertyTypeID {
+public:
+    PropertyTypeID(int category, int subType) : category(category), subType(subType) {}
 
-    double vx;
-    double vy;
-    double vz;
+    bool operator<(const PropertyTypeID& other) const {
+        return std::tie(category, subType) < std::tie(other.category, other.subType);
+    }
 
-    double wx;
-    double wy;
-    double wz;
-
-    double forcex;
-    double forcey;
-    double forcez;
-
-    double torquex;
-    double torquey;
-    double torquez;
-
-    double radius;
-};
-struct SphereWall
-{
-    double x;
-    double y;
-    double z;
-    double radius;
+private:
+    int category;  // For example, 1 for spheres, 2 for cylinders, etc.
+    int subType;   // Subtype to distinguish different properties within the same category
 };
