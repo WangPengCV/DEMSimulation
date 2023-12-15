@@ -6,7 +6,7 @@ int main(int argc, char **argv)
     try
     {
         // Creating an instance of ParticleProperties
-        auto properties = std::make_shared<ParticleProperties>(7000, 0.5, 0.2, 0.01, 0.5, 10000000, 0.95, 0.3);
+        auto properties = std::make_shared<SphereProperties>(7000, 0.5, 0.2, 0.01, 0.5, 10000000, 0.95, 0.3);
         // Printing some properties
         std::cout << "Density: " << properties->getDensity() << std::endl;
         std::cout << "Mass: " << properties->getMass() << std::endl;
@@ -16,10 +16,10 @@ int main(int argc, char **argv)
         PropertyTypeID id(1, 1);
 
         // Adding properties to manager
-        manager.addProperties(id, properties);
+        manager.addSphereProperties(id, properties);
 
         // Retrieving and printing properties from manager
-        auto retrievedProperties = manager.getProperties(id);
+        auto retrievedProperties = manager.getSphereProperties(id);
         if (retrievedProperties)
         {
             std::cout << "Retrieved Mass: " << retrievedProperties->getMass() << std::endl;

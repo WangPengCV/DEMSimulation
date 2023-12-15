@@ -1,6 +1,19 @@
-# Create a library from source files
-add_library(particle_lib ParticleProperties.cpp ParticlePropertyManager.cpp DEMProperties.cpp)
+# Include the ParticleProperties directory to build the ParticleProperties_lib
+add_subdirectory(ParticleProperties)
 
-# Make sure the compiler can find include files for our library
-# when other libraries or executables link to particle_lib
-target_include_directories(particle_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# Define the DEM_lib library, which may include other source files in the src directory
+add_library(DEM_lib
+    DEMProperties.cpp
+    DEMProperties.h
+)
+
+# Link the DEM_lib with ParticleProperties_lib if needed
+target_link_libraries(DEM_lib
+    ParticleProperties_lib
+)
+
+# Specify the include directories for the DEM_lib library
+target_include_directories(DEM_lib PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/ParticleProperties
+)

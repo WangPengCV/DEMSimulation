@@ -1,0 +1,10 @@
+^F:\PERSONWEB\PROJECT\SPHEREDEMSIMULATION\SRC\CMAKELISTS.TXT
+setlocal
+D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/SphereDEMSimulation -BF:/PersonWeb/Project/SphereDEMSimulation/build --check-stamp-file F:/PersonWeb/Project/SphereDEMSimulation/build/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

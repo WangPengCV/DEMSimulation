@@ -1,0 +1,2 @@
+﻿ParticleSimulationTest.obj : error LNK2019: 无法解析的外部符号 "public: void __cdecl DEMProperties::loadFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?loadFromFile@DEMProperties@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)，函数 main 中引用了该符号
+F:\PersonWeb\Project\SphereDEMSimulation\build\tests\Debug\ParticleSimulationTest.exe : fatal error LNK1120: 1 个无法解析的外部命令
