@@ -68,10 +68,12 @@ void DEMProperties::parseLine(const std::string &line)
 
             double mass = 4.0 / 3.0 * PI * radius * radius * radius * density;
 
-            auto properties = std::make_shared<ParticleProperties>(density, mass, radius, rollingFriction, slidingFriction,
-                                                                   youngModulus, restitution, poissonRatio);
+            double moment_of_inertia = 2.0 / 5.0 * PI * radius * radius;
 
-            manger->addProperties(id, properties);
+            auto properties = std::make_shared<SphereProperties>(density, mass, radius, rollingFriction, slidingFriction,
+                                                                   youngModulus, restitution, poissonRatio,moment_of_inertia);
+
+            manger->addSphereProperties(id, properties);
         }
         else if (entryType == "CYLINDER_PROPERTIES")
         {

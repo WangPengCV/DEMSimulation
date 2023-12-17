@@ -1,4 +1,1 @@
-# Particle Properties
-# CategoryTypeID, SubTypeID, Density, Radius, RollingFriction, SlidingFriction, YoungModulus, Restitution, PoissionRatio
 SPHERE_PROPERTIES, 0, 0, 2000, 0.0024, 0, 0.2, 100000000, 0.95, 0.3
-

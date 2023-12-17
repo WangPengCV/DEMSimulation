@@ -6,7 +6,7 @@ int main(int argc, char **argv)
     try
     {
         // Creating an instance of ParticleProperties
-        auto properties = std::make_shared<SphereProperties>(7000, 0.5, 0.2, 0.01, 0.5, 10000000, 0.95, 0.3);
+        auto properties = std::make_shared<SphereProperties>(7000, 0.5, 0.2, 0.01, 0.5, 10000000, 0.95, 0.3,10);
         // Printing some properties
         std::cout << "Density: " << properties->getDensity() << std::endl;
         std::cout << "Mass: " << properties->getMass() << std::endl;

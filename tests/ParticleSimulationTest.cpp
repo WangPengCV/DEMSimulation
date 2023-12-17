@@ -17,7 +17,7 @@ int main(int argc, char **argv)
         PropertyTypeID id(0, 0);
 
         // Retrieving and printing properties from manager
-        auto retrievedProperties = manger->getProperties(id);
+        auto retrievedProperties = manger->getSphereProperties(id);
         if (retrievedProperties)
         {
             std::cout << "Retrieved Mass: " << retrievedProperties->getMass() << std::endl;

@@ -11,6 +11,9 @@
       <FullPath>F:\PersonWeb\Project\SphereDEMSimulation\build\tests\Debug\ParticleSimulationTest.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
+      <FullPath>F:\PersonWeb\Project\SphereDEMSimulation\build\tests\Debug\SphereParticleTest.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
       <FullPath>F:\PersonWeb\Project\SphereDEMSimulation\build\x64\Debug\ALL_BUILD</FullPath>
     </ProjectOutput>
   </ProjectOutputs>

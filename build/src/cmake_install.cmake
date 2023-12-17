@@ -34,7 +34,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("F:/PersonWeb/Project/SphereDEMSimulation/build/src/particleproperties/cmake_install.cmake")
+  include("F:/PersonWeb/Project/SphereDEMSimulation/build/src/ParticleProperties/cmake_install.cmake")
+  include("F:/PersonWeb/Project/SphereDEMSimulation/build/src/Particle/cmake_install.cmake")
 
 endif()
 

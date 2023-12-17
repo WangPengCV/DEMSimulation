@@ -20,7 +20,6 @@ private:
 
 class ParticlePropertyManager {
 public:
-    void addProperties(const PropertyTypeID& id, std::shared_ptr<ParticleProperties> properties); 
    
     // Method to add SphereProperties
     void addSphereProperties(const PropertyTypeID& id, std::shared_ptr<SphereProperties> properties); 
@@ -34,14 +33,7 @@ public:
         }
         return nullptr;
     }
-    std::shared_ptr<ParticleProperties> getProperties(const PropertyTypeID& id) const 
-    {
-        auto it = propertiesMap.find(id);
-        if (it != propertiesMap.end()) {
-            return it->second;
-        }
-        return nullptr; // or throw an exception if preferred
-    }
+    
 
 private:
     std::map<PropertyTypeID, std::shared_ptr<ParticleProperties>> propertiesMap;

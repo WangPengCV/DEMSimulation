@@ -59,26 +59,26 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\particleproperties\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\ParticleProperties\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ParticleProperties_lib.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ParticleProperties_lib</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\particleproperties\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\ParticleProperties\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ParticleProperties_lib.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ParticleProperties_lib</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\particleproperties\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\ParticleProperties\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">ParticleProperties_lib.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">ParticleProperties_lib</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\particleproperties\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\ParticleProperties\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">ParticleProperties_lib.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">ParticleProperties_lib</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -95,10 +95,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -111,7 +111,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -128,10 +128,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -144,7 +144,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
@@ -161,10 +161,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -177,7 +177,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -193,10 +193,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -212,7 +212,7 @@
       <UseUtf8Encoding>Always</UseUtf8Encoding>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule F:/PersonWeb/Project/SphereDEMSimulation/src/ParticleProperties/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/SphereDEMSimulation -BF:/PersonWeb/Project/SphereDEMSimulation/build --check-stamp-file F:/PersonWeb/Project/SphereDEMSimulation/build/src/particleproperties/CMakeFiles/generate.stamp
+D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/SphereDEMSimulation -BF:/PersonWeb/Project/SphereDEMSimulation/build --check-stamp-file F:/PersonWeb/Project/SphereDEMSimulation/build/src/ParticleProperties/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -221,11 +221,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\particleproperties\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\ParticleProperties\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule F:/PersonWeb/Project/SphereDEMSimulation/src/ParticleProperties/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/SphereDEMSimulation -BF:/PersonWeb/Project/SphereDEMSimulation/build --check-stamp-file F:/PersonWeb/Project/SphereDEMSimulation/build/src/particleproperties/CMakeFiles/generate.stamp
+D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/SphereDEMSimulation -BF:/PersonWeb/Project/SphereDEMSimulation/build --check-stamp-file F:/PersonWeb/Project/SphereDEMSimulation/build/src/ParticleProperties/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -234,11 +234,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\particleproperties\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\ParticleProperties\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule F:/PersonWeb/Project/SphereDEMSimulation/src/ParticleProperties/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/SphereDEMSimulation -BF:/PersonWeb/Project/SphereDEMSimulation/build --check-stamp-file F:/PersonWeb/Project/SphereDEMSimulation/build/src/particleproperties/CMakeFiles/generate.stamp
+D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/SphereDEMSimulation -BF:/PersonWeb/Project/SphereDEMSimulation/build --check-stamp-file F:/PersonWeb/Project/SphereDEMSimulation/build/src/ParticleProperties/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -247,11 +247,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\particleproperties\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\ParticleProperties\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule F:/PersonWeb/Project/SphereDEMSimulation/src/ParticleProperties/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/SphereDEMSimulation -BF:/PersonWeb/Project/SphereDEMSimulation/build --check-stamp-file F:/PersonWeb/Project/SphereDEMSimulation/build/src/particleproperties/CMakeFiles/generate.stamp
+D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/SphereDEMSimulation -BF:/PersonWeb/Project/SphereDEMSimulation/build --check-stamp-file F:/PersonWeb/Project/SphereDEMSimulation/build/src/ParticleProperties/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -260,7 +260,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\particleproperties\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">F:\PersonWeb\Project\SphereDEMSimulation\build\src\ParticleProperties\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>

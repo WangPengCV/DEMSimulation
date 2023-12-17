@@ -1,6 +1,8 @@
-# Add executable for ParticleProperties tests
+add_executable(SphereParticleTest SphereParticleTest.cpp)
+target_link_libraries(SphereParticleTest ParticleProperties_lib DEM_lib Particle_lib)
+
 add_executable(ParticlePropertiesTest ParticlePropertiesTest.cpp)
-target_link_libraries(ParticlePropertiesTest ParticleProperties_lib)
+target_link_libraries(ParticlePropertiesTest ParticleProperties_lib DEM_lib)
 
 add_executable(ParticleSimulationTest ParticleSimulationTest.cpp)
 target_link_libraries(ParticleSimulationTest ParticleProperties_lib DEM_lib)

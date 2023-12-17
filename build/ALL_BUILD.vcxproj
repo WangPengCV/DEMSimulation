@@ -69,7 +69,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -79,7 +79,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -89,7 +89,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -99,7 +99,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -181,13 +181,21 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{173D19E1-9293-3690-9848-C1ED263EF7F4}</Project>
       <Name>ParticlePropertiesTest</Name>
     </ProjectReference>
-    <ProjectReference Include="F:\PersonWeb\Project\SphereDEMSimulation\build\src\particleproperties\ParticleProperties_lib.vcxproj">
+    <ProjectReference Include="F:\PersonWeb\Project\SphereDEMSimulation\build\src\ParticleProperties\ParticleProperties_lib.vcxproj">
       <Project>{D639F024-0873-3801-9E56-D694CEC578CE}</Project>
       <Name>ParticleProperties_lib</Name>
     </ProjectReference>
     <ProjectReference Include="F:\PersonWeb\Project\SphereDEMSimulation\build\tests\ParticleSimulationTest.vcxproj">
       <Project>{6A215ED1-6E42-3A32-9C13-26D8B75E1569}</Project>
       <Name>ParticleSimulationTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\SphereDEMSimulation\build\src\Particle\Particle_lib.vcxproj">
+      <Project>{B01CFCB2-A73F-369A-BE15-3214C2599908}</Project>
+      <Name>Particle_lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\SphereDEMSimulation\build\tests\SphereParticleTest.vcxproj">
+      <Project>{33AF3F5E-1879-34B0-BB29-31792C2C5FFE}</Project>
+      <Name>SphereParticleTest</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
