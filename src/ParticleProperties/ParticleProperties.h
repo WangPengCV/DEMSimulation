@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 #include <stdexcept>
 #include <algorithm>
 const double PI = 3.1415926535897932384626;

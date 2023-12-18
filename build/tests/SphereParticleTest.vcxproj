@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -103,10 +103,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -114,7 +114,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>..\src\ParticleProperties\Debug\ParticleProperties_lib.lib;..\src\Debug\DEM_lib.lib;..\src\Particle\Debug\Particle_lib.lib;..\src\ParticleProperties\Debug\ParticleProperties_lib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>..\src\ParticleProperties\Debug\ParticleProperties_lib.lib;..\src\Debug\DEM_lib.lib;..\src\Particle\Debug\Particle_lib.lib;..\src\BoundaryCondition\Debug\BoundaryCondition_lib.lib;..\src\Particle\Debug\Particle_lib.lib;..\src\ParticleProperties\Debug\ParticleProperties_lib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -129,7 +129,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -146,10 +146,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -157,7 +157,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>..\src\ParticleProperties\Release\ParticleProperties_lib.lib;..\src\Release\DEM_lib.lib;..\src\Particle\Release\Particle_lib.lib;..\src\ParticleProperties\Release\ParticleProperties_lib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>..\src\ParticleProperties\Release\ParticleProperties_lib.lib;..\src\Release\DEM_lib.lib;..\src\Particle\Release\Particle_lib.lib;..\src\BoundaryCondition\Release\BoundaryCondition_lib.lib;..\src\Particle\Release\Particle_lib.lib;..\src\ParticleProperties\Release\ParticleProperties_lib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -172,7 +172,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
@@ -189,10 +189,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -200,7 +200,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>..\src\ParticleProperties\MinSizeRel\ParticleProperties_lib.lib;..\src\MinSizeRel\DEM_lib.lib;..\src\Particle\MinSizeRel\Particle_lib.lib;..\src\ParticleProperties\MinSizeRel\ParticleProperties_lib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>..\src\ParticleProperties\MinSizeRel\ParticleProperties_lib.lib;..\src\MinSizeRel\DEM_lib.lib;..\src\Particle\MinSizeRel\Particle_lib.lib;..\src\BoundaryCondition\MinSizeRel\BoundaryCondition_lib.lib;..\src\Particle\MinSizeRel\Particle_lib.lib;..\src\ParticleProperties\MinSizeRel\ParticleProperties_lib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -215,7 +215,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -231,10 +231,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties;F:\PersonWeb\Project\SphereDEMSimulation\src;F:\PersonWeb\Project\SphereDEMSimulation\src\Particle;F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -242,7 +242,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>..\src\ParticleProperties\RelWithDebInfo\ParticleProperties_lib.lib;..\src\RelWithDebInfo\DEM_lib.lib;..\src\Particle\RelWithDebInfo\Particle_lib.lib;..\src\ParticleProperties\RelWithDebInfo\ParticleProperties_lib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>..\src\ParticleProperties\RelWithDebInfo\ParticleProperties_lib.lib;..\src\RelWithDebInfo\DEM_lib.lib;..\src\Particle\RelWithDebInfo\Particle_lib.lib;..\src\BoundaryCondition\RelWithDebInfo\BoundaryCondition_lib.lib;..\src\Particle\RelWithDebInfo\Particle_lib.lib;..\src\ParticleProperties\RelWithDebInfo\ParticleProperties_lib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -321,6 +321,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\SphereDEMSimulation\build\src\BoundaryCondition\BoundaryCondition_lib.vcxproj">
+      <Project>{DB35BEE6-C678-3FAA-8DB4-91A4E61CF342}</Project>
+      <Name>BoundaryCondition_lib</Name>
     </ProjectReference>
     <ProjectReference Include="F:\PersonWeb\Project\SphereDEMSimulation\build\src\DEM_lib.vcxproj">
       <Project>{3C8DFB94-37DD-324F-9182-F012A777A630}</Project>

@@ -14,6 +14,9 @@
 # EXTERNAL cache entries
 ########################
 
+//Dependencies for the target
+BoundaryCondition_lib_LIB_DEPENDS:STATIC=general;Particle_lib;general;ParticleProperties_lib;
+
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.33.31629/bin/Hostx64/x64/lib.exe
 
@@ -198,7 +201,7 @@ DEMSimulation_IS_TOP_LEVEL:STATIC=ON
 DEMSimulation_SOURCE_DIR:STATIC=F:/PersonWeb/Project/SphereDEMSimulation
 
 //Dependencies for the target
-DEM_lib_LIB_DEPENDS:STATIC=general;ParticleProperties_lib;general;Particle_lib;
+DEM_lib_LIB_DEPENDS:STATIC=general;ParticleProperties_lib;general;Particle_lib;general;BoundaryCondition_lib;
 
 //Dependencies for the target
 Particle_lib_LIB_DEPENDS:STATIC=general;ParticleProperties_lib;
@@ -288,7 +291,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib

@@ -173,6 +173,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\SphereDEMSimulation\build\src\BoundaryCondition\BoundaryCondition_lib.vcxproj">
+      <Project>{DB35BEE6-C678-3FAA-8DB4-91A4E61CF342}</Project>
+      <Name>BoundaryCondition_lib</Name>
+    </ProjectReference>
     <ProjectReference Include="F:\PersonWeb\Project\SphereDEMSimulation\build\src\DEM_lib.vcxproj">
       <Project>{3C8DFB94-37DD-324F-9182-F012A777A630}</Project>
       <Name>DEM_lib</Name>
