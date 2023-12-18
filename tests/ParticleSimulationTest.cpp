@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
         demproperties.loadFromFile(inputfilename);
 
-        std::shared_ptr<ParticlePropertyManager> manger = demproperties.getParticleManage();
+        std::shared_ptr<ParticlePropertyManager> manger = demproperties.getParticleManager();
         PropertyTypeID id(0, 0);
 
         // Retrieving and printing properties from manager
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
             std::cout << "Properties not found for given ID." << std::endl;
         }
 
-
+        demproperties.saveToFile("OutputFile.txt");
         
     }
     catch (const std::runtime_error &e)

@@ -2,6 +2,7 @@
 add_library(ParticleProperties_lib
     ParticleProperties.cpp
     SphereProperties.cpp
+    PlanewallProperties.cpp
     ParticlePropertyManager.cpp
 )
 

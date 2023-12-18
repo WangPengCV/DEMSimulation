@@ -7,6 +7,9 @@
     <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties\SphereProperties.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties\PlanewallProperties.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties\ParticlePropertyManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -1,1 +1,17 @@
+# Particle Properties
+# Format: CategoryTypeID, SubTypeID, Density, Radius, RollingFriction, SlidingFriction, YoungModulus, Restitution, PoissionRatio
 SPHERE_PROPERTIES, 0, 0, 2000, 0.0024, 0, 0.2, 100000000, 0.95, 0.3
+
+# Wall Properties
+# Format: CategoryTypeID, SubTypeID, Density, thickness, RollingFriction, SlidingFriction, YoungModulus, Restitution, PoissionRatio
+PLANEWALL_PROPERTIES 1, 0, 2000, 0.002, 0, 0.2, 3000000000, 0.95, 0.3
+
+
+# Boundary Conditions
+# Format: TYPE, id, CategoryTypeID, SubTypeID, state, NormalX, NormalY, NormalZ, Cornor1X, Corner1Y, Corner1Z,  Cornor2X, Corner2Y, Corner2Z,  Cornor3X, Corner3Y, Corner3Z, Vx, Vy, Vz
+BOUNDARY, PLANEWALL, 0, 1, 0, 0, 1, 0, 0, 0.001, 0.008, 0.008, 0.001, 0.008, 0.001, 0.001, 0.001, 0.001, 0, 0, 0 
+BOUNDARY, PLANEWALL, 1, 1, 0, 0, -1, 0, 0, 0.008, 0.008, 0.008, 0.008, 0.008, 0.001, 0.008, 0.001, 0.001, 0, 0, 0 
+BOUNDARY, PLANEWALL, 2, 1, 0, 0, 0, 1, 0, 0.001, 0.001, 0.001, 0.008, 0.001, 0.001, 0.008, 0.001, 0.008, 0, 0, 0 
+BOUNDARY, PLANEWALL, 3, 1, 0, 0, 0, 0, -1, 0.001, 0.008, 0.008, 0.008, 0.008, 0.008, 0.008, 0.001, 0.008, 0, 0, 0 
+BOUNDARY, PLANEWALL, 4, 1, 0, 0, 0, 0, 1, 0.001, 0.008, 0.001, 0.008, 0.008, 0.001, 0.008, 0.008, 0.008, 0, 0, 0 
+BOUNDARY, PLANEWALL, 5, 1, 0, 0, 0, -1, 0, 0.001, 0.008, 0.008, 0.001, 0.008, 0.001, 0.008, 0.008, 0.001, 0, 0, 0 

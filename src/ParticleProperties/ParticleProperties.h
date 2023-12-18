@@ -3,6 +3,8 @@
 #include <vector>
 #include <stdexcept>
 #include <algorithm>
+#include <sstream>
+
 const double PI = 3.1415926535897932384626;
 class ParticleProperties
 {
@@ -11,7 +13,10 @@ public:
                        double youngModulus, double restitution, double poissonRatio);
     ParticleProperties();
     // Add a virtual destructor
-    virtual ~ParticleProperties() {}
+    virtual ~ParticleProperties() = default;
+
+    virtual std::string save_tostring() const = 0;  // Pure virtual function
+
 
     
     void setDensity(double density );

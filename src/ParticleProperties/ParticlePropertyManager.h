@@ -1,5 +1,6 @@
 #pragma once
 #include "SphereProperties.h"
+#include "PlanewallProperties.h"
 #include <set>
 #include <tuple>
 #include <memory>
@@ -12,6 +13,9 @@ public:
     bool operator<(const PropertyTypeID& other) const {
         return std::tie(category, subType) < std::tie(other.category, other.subType);
     }
+    int getCategory() const { return category; }
+    int getSubType() const {return subType;}
+
 
 private:
     int category;  // For example, 1 for spheres, 2 for cylinders, etc.
@@ -23,6 +27,8 @@ public:
    
     // Method to add SphereProperties
     void addSphereProperties(const PropertyTypeID& id, std::shared_ptr<SphereProperties> properties); 
+    // Method to add PlanewallProperties
+    void addPlanewallProperties(const PropertyTypeID& id, std::shared_ptr<PlanewallProperties> properties); 
 
     // Method to get SphereProperties
     std::shared_ptr<SphereProperties> getSphereProperties(const PropertyTypeID& id) const {
@@ -33,8 +39,20 @@ public:
         }
         return nullptr;
     }
-    
 
+    // Method to get SphereProperties
+    std::shared_ptr<PlanewallProperties> getPlanewallProperties(const PropertyTypeID& id) const {
+        auto it = propertiesMap.find(id);
+        if (it != propertiesMap.end()) {
+            // Use dynamic_cast to ensure the correct type is returned
+            return std::dynamic_pointer_cast<PlanewallProperties>(it->second);
+        }
+        return nullptr;
+    }
+    
+    std::map<PropertyTypeID, std::shared_ptr<ParticleProperties>> getParticleProperties() const{
+        return propertiesMap;
+    }
 private:
     std::map<PropertyTypeID, std::shared_ptr<ParticleProperties>> propertiesMap;
 };

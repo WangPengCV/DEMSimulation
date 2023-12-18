@@ -8,7 +8,9 @@ public:
         : id(id), type(type), state(state) {}
 
     virtual ~BoundaryCondition() = default;
+    virtual std::string save_tostring() const = 0;  // Pure virtual function
 
+    void setState(int state);
     // Accessors
     int getId() const { return id; }
     PropertyTypeID getType() const { return type; }

@@ -267,6 +267,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties\ParticleProperties.cpp" />
     <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties\SphereProperties.cpp" />
+    <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties\PlanewallProperties.cpp" />
     <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\ParticleProperties\ParticlePropertyManager.cpp" />
   </ItemGroup>
   <ItemGroup>

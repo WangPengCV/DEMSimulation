@@ -48,3 +48,39 @@ const Eigen::Vector3d &PlaneWall::getCorner3() const
 {
     return corner3;
 }
+
+void PlaneWall::setNormal(Eigen::Vector3d &normal)
+{
+    normal = normal;
+}
+void PlaneWall::setCorner1(Eigen::Vector3d &corner1)
+{
+    corner1 = corner1;
+}
+void PlaneWall::setCorner2(Eigen::Vector3d &corner2)
+{
+    corner2 = corner2;
+}
+void PlaneWall::setCorner3(Eigen::Vector3d &corner3)
+{
+    corner3 = corner3;
+}
+void PlaneWall::setVelociy(Eigen::Vector3d &velociy)
+{
+    velociy = velociy;
+}
+void PlaneWall::setMeshResolution(double meshResolution)
+{
+    meshResolution = meshResolution;
+}
+
+std::string PlaneWall::save_tostring() const {
+    std::ostringstream ss;
+    ss << "PLANEWALL, " << id << ", " << type.getCategory() << ", " << type.getSubType() << ", " << state << ", "
+       << normal.x() << ", " << normal.y() << ", " << normal.z() << ", "
+       << corner1.x() << ", " << corner1.y() << ", " << corner1.z() << ", "
+       << corner2.x() << ", " << corner2.y() << ", " << corner2.z() << ", "
+       << corner3.x() << ", " << corner3.y() << ", " << corner3.z() << ", "
+       << velocity.x() << ", " << velocity.y() << ", " << velocity.z();
+    return ss.str();
+}
