@@ -16,6 +16,16 @@ Particle::~Particle()
     // Destructor implementation (if needed)
 }
 
+void Particle::setPosition(Eigen::Vector3d &position)
+{
+    position = position;
+}
+
+void Particle::setId(int id)
+{
+    id = id;
+}
+
 void Particle::addForce(const Eigen::Vector3d &additionalForce)
 {
     force += additionalForce;

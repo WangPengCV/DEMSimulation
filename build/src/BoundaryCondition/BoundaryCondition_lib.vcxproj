@@ -279,10 +279,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{D639F024-0873-3801-9E56-D694CEC578CE}</Project>
       <Name>ParticleProperties_lib</Name>
     </ProjectReference>
-    <ProjectReference Include="F:\PersonWeb\Project\SphereDEMSimulation\build\src\Particle\Particle_lib.vcxproj">
-      <Project>{B01CFCB2-A73F-369A-BE15-3214C2599908}</Project>
-      <Name>Particle_lib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

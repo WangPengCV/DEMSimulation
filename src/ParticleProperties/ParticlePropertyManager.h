@@ -5,7 +5,10 @@
 #include <tuple>
 #include <memory>
 #include <map>
-
+enum class ParticleType {
+    SPHERE,
+    PLANEWALL
+};
 class PropertyTypeID {
 public:
     PropertyTypeID(int category, int subType) : category(category), subType(subType) {}
@@ -27,9 +30,10 @@ public:
    
     // Method to add SphereProperties
     void addSphereProperties(const PropertyTypeID& id, std::shared_ptr<SphereProperties> properties); 
+    void addSphereType(int category);
     // Method to add PlanewallProperties
     void addPlanewallProperties(const PropertyTypeID& id, std::shared_ptr<PlanewallProperties> properties); 
-
+    void addPlanewallType(int category);
     // Method to get SphereProperties
     std::shared_ptr<SphereProperties> getSphereProperties(const PropertyTypeID& id) const {
         auto it = propertiesMap.find(id);
@@ -50,9 +54,14 @@ public:
         return nullptr;
     }
     
-    std::map<PropertyTypeID, std::shared_ptr<ParticleProperties>> getParticleProperties() const{
+    const std::map<PropertyTypeID, std::shared_ptr<ParticleProperties>>& getParticleProperties() const{
         return propertiesMap;
     }
+    const std::map<int, ParticleType>& gettypeMapping() const{
+        return typeMapping;
+    }
+
 private:
     std::map<PropertyTypeID, std::shared_ptr<ParticleProperties>> propertiesMap;
+    std::map<int, ParticleType> typeMapping;
 };

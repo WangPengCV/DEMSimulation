@@ -8,8 +8,8 @@ public:
               Eigen::Vector3d &corner2, Eigen::Vector3d &corner3, Eigen::Vector3d &velocity, double meshResolution)
         : BoundaryCondition(id, type, state), normal(normal), corner1(corner1), corner2(corner2),
           corner3(corner3), velocity(velocity), meshResolution(meshResolution) {}
-    virtual std::string save_tostring() const override; // Pure virtual function
-
+          
+    virtual std::string save_tostring() const override; 
     void setNormal(Eigen::Vector3d &normal);
     void setCorner1(Eigen::Vector3d &corner1);
     void setCorner2(Eigen::Vector3d &corner2);

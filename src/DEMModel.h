@@ -9,8 +9,8 @@ class DEMModel {
 public:
     DEMModel();
 
-    void loadInputfile(const std::string& filename);
-    void initializeParticles();
+    void initializeSimulation(const std::string& propertiesFile);
+    
     void runSimulation(double totalTime, double timeStep);
     
     // Additional methods for managing particles, interactions, etc.
@@ -26,7 +26,7 @@ public:
     void removeParticle(int particleId);
 private:
 
-    std::shared_ptr<DEMProperties> properties;
+    std::shared_ptr<DEMProperties> DEMproperties;
 
     std::vector<std::shared_ptr<Particle>> particles;
     

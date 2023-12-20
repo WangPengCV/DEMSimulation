@@ -1,0 +1,8 @@
+#define vtkDomainsChemistry_AUTOINIT 1(vtkDomainsChemistryOpenGL2)
+#define vtkFiltersCore_AUTOINIT 1(vtkFiltersParallel)
+#define vtkIOExport_AUTOINIT 1(vtkIOExportPDF)
+#define vtkIOExportGL2PS_AUTOINIT 1(vtkIOExportGL2PS)
+#define vtkRenderingContext2D_AUTOINIT 1(vtkRenderingContextOpenGL2)
+#define vtkRenderingCore_AUTOINIT 5(vtkInteractionStyle,vtkRenderingCellGrid,vtkRenderingFreeType,vtkRenderingOpenGL2,vtkRenderingUI)
+#define vtkRenderingOpenGL2_AUTOINIT 1(vtkRenderingGL2PSOpenGL2)
+#define vtkRenderingVolume_AUTOINIT 1(vtkRenderingVolumeOpenGL2)

@@ -7,6 +7,7 @@ add_library(Particle_lib
 # Link with ParticleProperties_lib to use PropertyTypeID
 target_link_libraries(Particle_lib
     ParticleProperties_lib
+    BoundaryCondition_lib
 )
 # Specify the include directory for the ParticleProperties library
 target_include_directories(Particle_lib PUBLIC
