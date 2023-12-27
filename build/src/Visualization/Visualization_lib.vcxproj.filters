@@ -4,6 +4,9 @@
     <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\Visualization\Visualization.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\Visualization\LineSphereSource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="F:\PersonWeb\Project\SphereDEMSimulation\src\Visualization\CMakeLists.txt" />

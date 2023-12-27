@@ -8,6 +8,7 @@ add_library(Particle_lib
 target_link_libraries(Particle_lib
     ParticleProperties_lib
     BoundaryCondition_lib
+    ContactForce_lib
 )
 # Specify the include directory for the ParticleProperties library
 target_include_directories(Particle_lib PUBLIC

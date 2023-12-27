@@ -14,19 +14,20 @@ public:
              const Eigen::Vector3d &omega = Eigen::Vector3d::Zero(),
              const Eigen::Vector3d &force = Eigen::Vector3d::Zero(),
              const Eigen::Vector3d &torque = Eigen::Vector3d::Zero());
+    
     virtual ~Particle();
 
     virtual double computeOverlap(const std::shared_ptr<Particle>& particle) = 0;
 
     virtual double computeOverlap(const std::shared_ptr<PlaneWall>& planewall) = 0;
 
-    virtual void updateVelocity(double deltaTime) = 0;
+    virtual void updateVelocity(double deltaTime, Eigen::Vector3d& gravity) = 0;
 
     virtual void updateOmega(double deltaTime) = 0;
 
     virtual std::string save_tostring() const = 0;  
 
-    void setPosition(Eigen::Vector3d &position);
+    void setPosition(const Eigen::Vector3d &position);
 
     void setId(int id);
 
@@ -44,7 +45,12 @@ public:
     // Accessor methods (if needed)
     int getId() const { return id; }    
     const Eigen::Vector3d& getPosition() const { return position; }
+    const Eigen::Vector3d& getVelocity() const { return velocity; }
+    const Eigen::Vector3d& getOmega() const { return omega; }
+
+
     const PropertyTypeID& getType() const {return type;}
+    int getState() const {return state;}
     std::shared_ptr<ParticlePropertyManager>  getParticlePropertyManager() const { return manager;}
 
 

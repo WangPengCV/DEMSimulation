@@ -4,6 +4,7 @@
 
 class BoundaryCondition {
 public:
+    BoundaryCondition(){}
     BoundaryCondition(int id, const PropertyTypeID& type, int state)
         : id(id), type(type), state(state) {}
 

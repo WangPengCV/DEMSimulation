@@ -8,7 +8,7 @@ Particle::Particle(int id, PropertyTypeID type, int state,
     : id(id), type(type), state(state), position(position), manager(manager),
       velocity(velocity), omega(omega), force(force), torque(torque)
 {
-    manager = std::make_shared<ParticlePropertyManager>();
+
 }
 
 Particle::~Particle()
@@ -16,14 +16,14 @@ Particle::~Particle()
     // Destructor implementation (if needed)
 }
 
-void Particle::setPosition(Eigen::Vector3d &position)
+void Particle::setPosition(const Eigen::Vector3d &newPosition)
 {
-    position = position;
+    position = newPosition;
 }
 
-void Particle::setId(int id)
+void Particle::setId(int newId)
 {
-    id = id;
+    id = newId;
 }
 
 void Particle::addForce(const Eigen::Vector3d &additionalForce)

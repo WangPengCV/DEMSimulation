@@ -11,6 +11,7 @@ enum class ParticleType {
 };
 class PropertyTypeID {
 public:
+    PropertyTypeID(){}  
     PropertyTypeID(int category, int subType) : category(category), subType(subType) {}
 
     bool operator<(const PropertyTypeID& other) const {

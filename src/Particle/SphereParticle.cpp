@@ -14,11 +14,11 @@ SphereParticle::~SphereParticle()
     // Custom cleanup for SphereParticle, if needed
 }
 
-void SphereParticle::updateVelocity(double deltaTime)
+void SphereParticle::updateVelocity(double deltaTime, Eigen::Vector3d& gravity)
 {
     // Implement sphere-specific velocity update logic
     double mass = manager->getSphereProperties(type)->getMass();
-    Eigen::Vector3d acceleration = force / mass;
+    Eigen::Vector3d acceleration = force / mass + gravity;
     velocity += acceleration * deltaTime;
 }
 
@@ -49,10 +49,7 @@ double SphereParticle::computeOverlap(const std::shared_ptr<Particle> &another)
 
         // Compute the overlap (positive if spheres intersect, zero or negative otherwise)
         overlap = (radius1 + radius2) - distance;
-        if(overlap < 0)
-        {
-            int kkkk = 0;
-        }
+       
     }
     return overlap > 0 ? overlap : 0.0;
 }
@@ -79,6 +76,8 @@ double SphereParticle::computeOverlap(const std::shared_ptr<PlaneWall> &planewal
 
     return (overlap > 0.0) ? overlap : 0.0;
 }
+
+
 
 std::string SphereParticle::save_tostring() const {
     std::ostringstream ss;

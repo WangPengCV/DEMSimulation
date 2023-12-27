@@ -1,7 +1,12 @@
 #include "DEMProperties.h"
 DEMProperties::DEMProperties()
 {
-    manger = std::make_shared<ParticlePropertyManager>();
+    manager = std::make_shared<ParticlePropertyManager>();
+    contactforce = std::make_shared<ContactForce>();
+    gridbasedcontactdetection = std::make_shared<GridBasedContactDetection>();
+    globalforces = Eigen::Vector3d::Zero();
+    gravity = Eigen::Vector3d::Zero();
+    gernerateFlag = true;
 }
 void DEMProperties::loadFromFile(const std::string &filename)
 {
@@ -62,9 +67,11 @@ void DEMProperties::parseLine(const std::string &line)
 
         if (boundaryType == "PLANEWALL")
         {
-            int id, categoryTypeID, subTypeID, state;
-            Eigen::Vector3d normal, corner1, corner2, corner3;
             parsePlaneWall(iss);
+        }
+        else if(boundaryType == "RECTANGULARCONTAINER")
+        {
+            parseRectangularContainer(iss);
         }
         // Handle other boundary types similarly
     }
@@ -76,13 +83,37 @@ void DEMProperties::parseLine(const std::string &line)
     {
         parseSpecificParticle(iss);
     }
-    else if(entryType == "TIMESTEP")
+    else if (entryType == "TIMESTEP")
     {
         iss >> timestep;
     }
-    else if(entryType == "TOTAL_TIME")
+    else if (entryType == "TOTAL_TIME")
     {
         iss >> totalTime;
+    }
+    else if (entryType == "GRAVITY")
+    {
+        iss >> gravity.x() >> gravity.y() >> gravity.z();
+    }
+    else if (entryType == "FORCE")
+    {
+        std::string forceType;
+        iss >> forceType;
+        if (forceType == "SPECIFIC")
+        {
+            Eigen::Vector3d force;
+            int particle_id;
+            iss >> particle_id >> force.x() >> force.y() >> force.z();
+            specificforces[particle_id] = force;
+        }
+        else if (forceType == "GLOBAL")
+        {
+            iss >> globalforces.x() >> globalforces.y() >> globalforces.z();
+        }
+    }
+    else if (entryType == "DIMENSIONS")
+    {
+        iss >> simulationdimensions.x() >> simulationdimensions.y() >> simulationdimensions.z();
     }
 }
 void DEMProperties::line_process(std::string &line)
@@ -119,9 +150,9 @@ void DEMProperties::parseSphereProperties(std::istringstream &iss)
     auto sphereProperties = std::make_shared<SphereProperties>(density, mass, radius, rollingFriction, slidingFriction,
                                                                youngModulus, restitution, poissonRatio, moment_of_inertia);
     // Assuming you have a mechanism to add these properties to your manager
-    manger->addSphereProperties(PropertyTypeID(category_id, subtype), sphereProperties);
+    manager->addSphereProperties(PropertyTypeID(category_id, subtype), sphereProperties);
 
-    manger->addSphereType(category_id);
+    manager->addSphereType(category_id);
 }
 void DEMProperties::parsePlanewallProperties(std::istringstream &iss)
 {
@@ -142,14 +173,13 @@ void DEMProperties::parsePlanewallProperties(std::istringstream &iss)
 
     auto properties = std::make_shared<PlanewallProperties>(density, thickness, mass, rollingFriction, slidingFriction,
                                                             youngModulus, restitution, poissonRatio);
-    manger->addPlanewallType(category_id);
-    manger->addPlanewallProperties(PropertyTypeID(category_id, subtype), properties);
+    manager->addPlanewallType(category_id);
+    manager->addPlanewallProperties(PropertyTypeID(category_id, subtype), properties);
 }
 void DEMProperties::parsePlaneWall(std::istringstream &iss)
 {
     int id, category_id, subtype, state;
     Eigen::Vector3d normal, corner1, corner2, corner3, velocity;
-    double meshResolution;
     try
     {
         iss >> id >> category_id >> subtype >> state;
@@ -157,13 +187,41 @@ void DEMProperties::parsePlaneWall(std::istringstream &iss)
         {
             throw std::runtime_error("Error parsing PLANEWALL boundary vectors.");
         }
-        meshResolution = 0;
-        auto pw = std::make_shared<PlaneWall>(id, PropertyTypeID(category_id, subtype), state, normal, corner1, corner2, corner3, velocity, meshResolution);
+        auto pw = std::make_shared<PlaneWall>(id, PropertyTypeID(category_id, subtype), state, normal, corner1, corner2, corner3, velocity);
         planewalls.push_back(pw);
     }
     catch (const std::exception &e)
     {
         std::cerr << "Error parsing PlaneWall: " << e.what() << std::endl;
+        return;
+    }
+}
+void DEMProperties::parseRectangularContainer(std::istringstream &iss)
+{
+    int id, category_id, subtype, state;
+    Eigen::Vector3d lowerCorner, dimensions, velocity;
+    try
+    {
+        iss >> id >> category_id >> subtype >> state;
+        if (!parseVector3d(iss, lowerCorner) || !parseVector3d(iss, dimensions)  || !parseVector3d(iss, velocity))
+        {
+            throw std::runtime_error("Error parsing PLANEWALL boundary vectors.");
+        }
+        auto rc = std::make_shared<RectangularContainer>(id, PropertyTypeID(category_id, subtype), state,lowerCorner,dimensions,velocity);
+        rc->rotateContainer(45,Eigen::Vector3d(0,0,1));
+        rectangularcontainer = rc;
+
+        planewalls.push_back(rectangularcontainer->getLeftWall());
+        planewalls.push_back(rectangularcontainer->getRightWall());
+        planewalls.push_back(rectangularcontainer->getBottomWall());
+        planewalls.push_back(rectangularcontainer->getFrontWall());
+        planewalls.push_back(rectangularcontainer->getBackWall());
+        planewalls.push_back(rectangularcontainer->getTopWall());
+       
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Error parsing RectangularContainer: " << e.what() << std::endl;
         return;
     }
 }
@@ -175,12 +233,28 @@ void DEMProperties::saveToFile(const std::string &filename) const
     {
         throw std::runtime_error("Unable to open file for saving: " + filename);
     }
+    file << "DIMENSIONS,  " << simulationdimensions.x() << ", " << simulationdimensions.y() << ", " << simulationdimensions.z() << "\n";
+    file << "TIMESTEP, " << timestep << "\n";
+    file << "TOTAL_TIME, " << totalTime << "\n";
+    file << "GRAVITY, " << gravity.x() << ", " << gravity.y() << ", " << gravity.z() << "\n";
 
-    for (const auto &pair : manger->getParticleProperties())
+    for (const auto &pair : specificforces)
+    {
+        const auto &id = pair.first;
+        const auto &force = pair.second;
+
+        file << "FORCE, "
+             << "SPECIFIC, " << id << "," << force.x() << ", " << force.y() << ", " << force.z() << "\n";
+    }
+
+    file << "FORCE, "
+         << "GLOBAL, , " << globalforces.x() << ", " << globalforces.y() << ", " << globalforces.z() << "\n";
+
+    for (const auto &pair : manager->getParticleProperties())
     {
         const auto &id = pair.first;
         const auto &prop = pair.second;
-        std::map<int, ParticleType> typeMapping = manger->gettypeMapping();
+        std::map<int, ParticleType> typeMapping = manager->gettypeMapping();
 
         if (typeMapping[id.getCategory()] == ParticleType::SPHERE)
         {
@@ -198,6 +272,11 @@ void DEMProperties::saveToFile(const std::string &filename) const
     {
         file << "BOUNDARY, " << boundary->save_tostring() << "\n";
     }
+
+   
+    
+    file << "BOUNDARY, " << rectangularcontainer->save_tostring() << "\n";
+    
 
     for (const auto &particle : particles)
     {
@@ -217,23 +296,27 @@ void DEMProperties::parseRandomParticle(std::istringstream &iss)
 
     if (type == "SPHERE")
     {
+        gernerateFlag= true;
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_real_distribution<> disX(xmin, xmax);
         std::uniform_real_distribution<> disY(ymin, ymax);
         std::uniform_real_distribution<> disZ(zmin, zmax);
+        int failedSpheres = 0;
         // Generate 'count' random particles within the specified ranges
         for (int i = 0; i < count; ++i)
         {
             double x, y, z;
             bool validPosition = false;
+            int count_number = 0;
             do
             {
+                count_number++;
                 validPosition = true;
                 x = disX(gen);
                 y = disY(gen);
                 z = disZ(gen);
-                auto tempsp = std::make_shared<SphereParticle>(id_index, PropertyTypeID(categoryId, subTypeId), state, manger, Eigen::Vector3d(x, y, z));
+                auto tempsp = std::make_shared<SphereParticle>(id_index, PropertyTypeID(categoryId, subTypeId), state, manager, Eigen::Vector3d(x, y, z));
                 for (const auto &plane : planewalls)
                 {
                     double overlap_pw = tempsp->computeOverlap(plane);
@@ -258,11 +341,40 @@ void DEMProperties::parseRandomParticle(std::istringstream &iss)
                     }
                 }
 
-            } while (!validPosition);
-            auto sp = std::make_shared<SphereParticle>(id_index, PropertyTypeID(categoryId, subTypeId), state, manger, Eigen::Vector3d(x, y, z));
+            } while (!validPosition && count_number < 100);
+            if (validPosition)
+            {
+                auto sp = std::make_shared<SphereParticle>(id_index, PropertyTypeID(categoryId, subTypeId), state, manager, Eigen::Vector3d(x, y, z));
+                particles.push_back(sp);
+                id_index++;
+            }
+            else
+            {
+                gernerateFlag = false;
+                failedSpheres = count - i;
+                // Use an ostringstream to format the data as a string
+                std::ostringstream oss;
+                oss << type << " "
+                    << categoryId << " "
+                    << subTypeId << " "
+                    << state << " "
+                    << failedSpheres << " "
+                    << xmin << " "
+                    << xmax << " "
+                    << ymin << " "
+                    << ymax << " "
+                    << zmin << " "
+                    << zmax;
+                
+                gernerateInfor[categoryId] = oss.str();
 
-            particles.push_back(sp);
-            id_index++;
+                break;
+            }
+        }
+        // You can check generateFlag and failedParticles here for further actions
+        if (!gernerateFlag)
+        {
+            std::cout << "Can't generate all spheres. Failed spheres: " << failedSpheres << std::endl;
         }
     }
 }
@@ -275,8 +387,138 @@ void DEMProperties::parseSpecificParticle(std::istringstream &iss)
     if (type == "SPHERE")
     {
         // Create and add the specific particle to your simulation
-        auto sp = std::make_shared<SphereParticle>(id, PropertyTypeID(categoryId, subTypeId), state, manger, Eigen::Vector3d(x, y, z), Eigen::Vector3d(vx, vy, vz));
+        auto sp = std::make_shared<SphereParticle>(id, PropertyTypeID(categoryId, subTypeId), state, manager, Eigen::Vector3d(x, y, z), Eigen::Vector3d(vx, vy, vz));
 
         particles.push_back(sp);
     }
+}
+void DEMProperties::generateRemainingParticles()
+{
+    if(!gernerateFlag)
+    {
+        auto typemapping = manager->gettypeMapping();
+
+        for(const auto& sub : gernerateInfor)
+        {
+            if(typemapping[sub.first] == ParticleType::SPHERE)
+            {
+                std::istringstream iss(sub.second);
+                parseRandomParticle(iss);
+            }
+           
+        }
+    }
+}
+void DEMProperties::initialContactDetection()
+{
+    contactforce->addParticleProperties(manager);
+    double minRadius = std::numeric_limits<double>::max();
+
+    for (const auto &particleproperties : manager->getParticleProperties())
+    {
+        auto typeMapping = manager->gettypeMapping();
+        if (typeMapping[particleproperties.first.getCategory()] == ParticleType::SPHERE)
+        {
+            double radius = particleproperties.second->getRadius();
+            if (radius < minRadius)
+            {
+                minRadius = radius;
+            }
+        }
+    }
+    gridbasedcontactdetection->initial(simulationdimensions.x(), simulationdimensions.y(), simulationdimensions.z(), minRadius);
+}
+void DEMProperties::handleCollisions()
+{
+    std::unordered_map<int, std::unordered_set<int>> pp_contact_paris;
+    std::unordered_map<int, std::unordered_set<int>> pw_contact_paris;
+
+
+
+    gridbasedcontactdetection->ParticleBroadPhase(particles, pp_contact_paris);
+    gridbasedcontactdetection->planewallBroadPhase(particles, planewalls, pw_contact_paris);
+
+    auto typemapping = manager->gettypeMapping();
+
+    for (const auto &contact_list : pp_contact_paris)
+    {
+        auto id1 = contact_list.first;
+        PropertyTypeID type1 = particles[id1]->getType();
+        for (auto &id2 : contact_list.second)
+        {
+            PropertyTypeID type2 = particles[id2]->getType();
+
+            if (typemapping[type1.getCategory()] == ParticleType::SPHERE && typemapping[type2.getCategory()] == ParticleType::SPHERE)
+            {
+                auto sp1 = std::static_pointer_cast<SphereParticle>(particles[id1]);
+                auto sp2 = std::static_pointer_cast<SphereParticle>(particles[id2]);
+
+                contactforce->computeSphereSphereForce(sp1, sp2, timestep);
+            }
+        }
+    }
+
+    for (const auto &contact_list : pw_contact_paris)
+    {
+        auto wall_id = contact_list.first;
+        for (auto &id : contact_list.second)
+        {
+            PropertyTypeID type = particles[id]->getType();
+
+            if (typemapping[type.getCategory()] == ParticleType::SPHERE)
+            {
+                auto wall = planewalls[wall_id];
+                auto sphere = std::static_pointer_cast<SphereParticle>(particles[id]);
+
+                contactforce->computePlaneWallSphereForce(wall, sphere, timestep);
+            }
+        }
+    }
+
+   
+}
+void DEMProperties::applyExternalForces()
+{
+    for (auto &particle : particles)
+    {
+
+        particle->addForce(globalforces);
+    }
+    for (auto &indexforce : specificforces)
+    {
+        particles[indexforce.first]->addForce(indexforce.second);
+    }
+    // add gravity force
+}
+void DEMProperties::motion()
+{
+    for (auto &particle : particles)
+    {
+        if (particle->getState() == 1)
+        {
+            particle->updateVelocity(timestep, gravity);
+            particle->updateOmega(timestep);
+            particle->updatePosition(timestep);
+        }
+        particle->resetForce();
+        particle->resetTorque();
+    }
+    for (auto &planewall : planewalls)
+    {
+        if (planewall->getState() == 1)
+        {
+            Eigen::Vector3d v = planewall->getVelociy();
+            auto type = planewall->getType();
+            v += planewall->getForce() / manager->getPlanewallProperties(type)->getMass() * timestep;
+            Eigen::Vector3d p1 = planewall->getCorner1();
+            Eigen::Vector3d p2 = planewall->getCorner2();
+            Eigen::Vector3d p3 = planewall->getCorner3();
+            Eigen::Vector3d displancement = v * timestep;
+            p1 += displancement;
+            p2 += displancement;
+            p3 += displancement;
+        }
+        planewall->resetForce();
+    }
+    contactforce->updateContactInformation();
 }

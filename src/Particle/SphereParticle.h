@@ -15,12 +15,13 @@ public:
     virtual ~SphereParticle();
 
     virtual double computeOverlap(const std::shared_ptr<Particle>& particle) override;
-
     virtual double computeOverlap(const std::shared_ptr<PlaneWall>& planewall) override;
+
+
 
     virtual std::string save_tostring() const override; 
 
 
-    virtual void updateVelocity(double deltaTime) override;
+    virtual void updateVelocity(double deltaTime, Eigen::Vector3d& gravity) override;
     virtual void updateOmega(double deltaTime) override;
 };

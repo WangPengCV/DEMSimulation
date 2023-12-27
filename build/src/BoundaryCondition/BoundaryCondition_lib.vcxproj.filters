@@ -7,6 +7,9 @@
     <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition\PlaneWall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition\RectangularContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="F:\PersonWeb\Project\SphereDEMSimulation\src\BoundaryCondition\CMakeLists.txt" />

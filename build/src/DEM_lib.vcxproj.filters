@@ -4,19 +4,14 @@
     <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\DEMProperties.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="F:\PersonWeb\Project\SphereDEMSimulation\src\DEMProperties.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="F:\PersonWeb\Project\SphereDEMSimulation\src\DEMModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="F:\PersonWeb\Project\SphereDEMSimulation\src\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{4CC11A36-C584-358F-A693-481376849FC4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{8ACF0BCD-973D-36A3-9E42-CB33657C1266}</UniqueIdentifier>
     </Filter>

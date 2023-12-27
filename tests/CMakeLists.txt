@@ -11,3 +11,19 @@ vtk_module_autoinit(
     TARGETS ParticleSimulationTest
     MODULES ${VTK_LIBRARIES}
   )
+
+add_executable(VisualizeGridBasedContactDetection VisualizeGridBasedContactDetection.cpp)
+target_link_libraries(VisualizeGridBasedContactDetection DEM_lib Visualization_lib ${VTK_LIBRARIES})
+
+vtk_module_autoinit(
+    TARGETS VisualizeGridBasedContactDetection
+    MODULES ${VTK_LIBRARIES}
+  )
+
+  add_executable(TwoSphereImpact TwoSphereImpact.cpp)
+  target_link_libraries(TwoSphereImpact DEM_lib Visualization_lib ${VTK_LIBRARIES})
+  
+  vtk_module_autoinit(
+      TARGETS TwoSphereImpact
+      MODULES ${VTK_LIBRARIES}
+    )

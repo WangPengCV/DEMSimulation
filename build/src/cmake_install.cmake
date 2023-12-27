@@ -38,6 +38,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("F:/PersonWeb/Project/SphereDEMSimulation/build/src/Particle/cmake_install.cmake")
   include("F:/PersonWeb/Project/SphereDEMSimulation/build/src/BoundaryCondition/cmake_install.cmake")
   include("F:/PersonWeb/Project/SphereDEMSimulation/build/src/Visualization/cmake_install.cmake")
+  include("F:/PersonWeb/Project/SphereDEMSimulation/build/src/ContactDetection/cmake_install.cmake")
+  include("F:/PersonWeb/Project/SphereDEMSimulation/build/src/ContactForce/cmake_install.cmake")
 
 endif()
 

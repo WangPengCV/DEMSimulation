@@ -12,10 +12,6 @@ int main(int argc, char **argv)
        
         demproperties.loadFromFile(inputfilename);
         Visualization vis(demproperties);
-        while(true)
-        {
-            vis.Update();  // Initial update to reflect the loaded data
-        }
 
        
         std::shared_ptr<ParticlePropertyManager> manger = demproperties.getParticleManager();
@@ -32,7 +28,7 @@ int main(int argc, char **argv)
             std::cout << "Properties not found for given ID." << std::endl;
         }
         
-        demproperties.saveToFile("OutputFile.txt");
+        demproperties.saveToFile("DEMProperties.txt");
         
     
     

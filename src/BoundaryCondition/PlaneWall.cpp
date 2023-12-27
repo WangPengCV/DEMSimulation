@@ -2,7 +2,7 @@
 
 #include "PlaneWall.h"
 
-void PlaneWall::generateMesh()
+void PlaneWall::generateMesh(double meshResolution)
 {
     meshVertices.clear(); // Clear existing vertices
 
@@ -49,6 +49,11 @@ const Eigen::Vector3d &PlaneWall::getCorner3() const
     return corner3;
 }
 
+const Eigen::Vector3d &PlaneWall::getVelociy() const
+{
+    return velocity;
+}
+
 void PlaneWall::setNormal(Eigen::Vector3d &normal)
 {
     normal = normal;
@@ -69,9 +74,14 @@ void PlaneWall::setVelociy(Eigen::Vector3d &velociy)
 {
     velociy = velociy;
 }
-void PlaneWall::setMeshResolution(double meshResolution)
+void PlaneWall::addForce(const Eigen::Vector3d &additionalForce)
 {
-    meshResolution = meshResolution;
+    force += additionalForce;
+}   
+void PlaneWall::resetForce()
+{
+        force.setZero();
+
 }
 
 std::string PlaneWall::save_tostring() const {
