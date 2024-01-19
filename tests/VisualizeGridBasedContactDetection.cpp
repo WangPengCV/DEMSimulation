@@ -60,7 +60,11 @@ void create3DGrid(vtkSmartPointer<vtkRenderer> &renderer, int numX, int numY, in
                 }
         }
 }
+<<<<<<< HEAD
 void addParticlesToRenderer(const std::vector<std::shared_ptr<SphereParticle>> &particles,
+=======
+void addParticlesToRenderer(const std::vector<std::shared_ptr<Particle>> &particles,
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
                             vtkSmartPointer<vtkRenderer> &renderer)
 {
         for (const auto &particle : particles)
@@ -86,7 +90,11 @@ void addParticlesToRenderer(const std::vector<std::shared_ptr<SphereParticle>> &
 }
 
 void visualizeContactPairs(const std::unordered_map<int, std::unordered_set<int>> &contact_pairs,
+<<<<<<< HEAD
                            const std::vector<std::shared_ptr<SphereParticle>> &particles,
+=======
+                           const std::vector<std::shared_ptr<Particle>> &particles,
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
                            vtkSmartPointer<vtkRenderer> &renderer)
 {
         vtkSmartPointer<vtkNamedColors> colors = vtkSmartPointer<vtkNamedColors>::New();
@@ -126,7 +134,11 @@ void visualizeContactPairs(const std::unordered_map<int, std::unordered_set<int>
 }
 
 void visualizeWallContactPairs(const std::unordered_map<int, std::unordered_set<int>> &contact_pairs,
+<<<<<<< HEAD
                                const std::vector<std::shared_ptr<SphereParticle>> &particles,
+=======
+                               const std::vector<std::shared_ptr<Particle>> &particles,
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
                                const std::vector<std::shared_ptr<PlaneWall>> &planewalls,
                                vtkSmartPointer<vtkRenderer> &renderer)
 {
@@ -219,6 +231,7 @@ int main(int argc, char **argv)
 
         std::vector<std::shared_ptr<PlaneWall>> planewalls = demproperties.getPlaneWall();
 
+<<<<<<< HEAD
         std::vector<std::shared_ptr<SphereParticle>> sphereparticles = demproperties.getsphereParticles();
         std::unordered_map<int, std::unordered_set<int>> pp_contact_paris;
         std::unordered_map<int, std::unordered_set<int>> pw_contact_paris;
@@ -232,6 +245,21 @@ int main(int argc, char **argv)
 
         //visualizeContactPairs(pp_contact_paris, particles, renderer);
         visualizeWallContactPairs(pw_contact_paris,sphereparticles,planewalls,renderer);
+=======
+        std::vector<std::shared_ptr<Particle>> particles = demproperties.getParticles();
+        std::unordered_map<int, std::unordered_set<int>> pp_contact_paris;
+        std::unordered_map<int, std::unordered_set<int>> pw_contact_paris;
+
+        gridbasedcontactdetection->ParticleBroadPhase(particles, pp_contact_paris);
+        gridbasedcontactdetection->planewallBroadPhase(particles, planewalls, pw_contact_paris);
+
+        // Add particles and plane walls to the renderer
+        addParticlesToRenderer(particles, renderer);
+        addPlaneWallsToRenderer(planewalls, renderer);
+
+        //visualizeContactPairs(pp_contact_paris, particles, renderer);
+        visualizeWallContactPairs(pw_contact_paris,particles,planewalls,renderer);
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
         vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
         renderWindow->AddRenderer(renderer);
         vtkSmartPointer<vtkRenderWindowInteractor> renderWindowInteractor = vtkSmartPointer<vtkRenderWindowInteractor>::New();

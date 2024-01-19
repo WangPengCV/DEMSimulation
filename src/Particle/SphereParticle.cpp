@@ -1,7 +1,11 @@
 #include "SphereParticle.h"
 
 SphereParticle::SphereParticle(int id, PropertyTypeID type, int state,
+<<<<<<< HEAD
                                const std::shared_ptr<ParticlePropertyManager>& manager,
+=======
+                               std::shared_ptr<ParticlePropertyManager> manager,
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
                                const Eigen::Vector3d &position,
                                const Eigen::Vector3d &velocity, const Eigen::Vector3d &omega,
                                const Eigen::Vector3d &force, const Eigen::Vector3d &torque)
@@ -30,7 +34,33 @@ void SphereParticle::updateOmega(double deltaTime)
     omega += angular_acceleration * deltaTime;
 }
 
+<<<<<<< HEAD
 
+=======
+double SphereParticle::computeOverlap(const std::shared_ptr<Particle> &another)
+{
+    int another_category = another->getType().getCategory();
+    auto another_manager = another->getParticlePropertyManager();
+    auto typemapping = another_manager->gettypeMapping();
+
+    double overlap = 0;
+    if (typemapping[another_category] == ParticleType::SPHERE)
+    {
+        auto radius1 = manager->getSphereProperties(this->getType())->getRadius();
+        auto radius2 = another_manager->getSphereProperties(another->getType())->getRadius();
+
+        // Compute the distance between the centers of the two spheres
+        Eigen::Vector3d position1 = this->getPosition();
+        Eigen::Vector3d position2 = another->getPosition();
+        double distance = (position1 - position2).norm();
+
+        // Compute the overlap (positive if spheres intersect, zero or negative otherwise)
+        overlap = (radius1 + radius2) - distance;
+       
+    }
+    return overlap > 0 ? overlap : 0.0;
+}
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 
 double SphereParticle::computeOverlap(const std::shared_ptr<PlaneWall> &planewall)
 {

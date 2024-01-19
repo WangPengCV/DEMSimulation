@@ -1,0 +1,16 @@
+F:/PersonWeb/Project/DEMSimulation-main/build/CMakeFiles/ALL_BUILD.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/CMakeFiles/ZERO_CHECK.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/src/CMakeFiles/DEM_lib.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/src/ParticleProperties/CMakeFiles/ParticleProperties_lib.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/src/Particle/CMakeFiles/Particle_lib.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/src/BoundaryCondition/CMakeFiles/BoundaryCondition_lib.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/src/Visualization/CMakeFiles/Visualization_lib.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/src/ContactDetection/CMakeFiles/ContactDetection_lib.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/src/ContactForce/CMakeFiles/ContactForce_lib.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/src/DynamicBoundaryMover/CMakeFiles/DynamicBoundaryMover_lib.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/src/EventTask/CMakeFiles/EventTask_lib.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/tests/CMakeFiles/SphereParticleTest.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/tests/CMakeFiles/ParticlePropertiesTest.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/tests/CMakeFiles/ParticleSimulationTest.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/tests/CMakeFiles/VisualizeGridBasedContactDetection.dir
+F:/PersonWeb/Project/DEMSimulation-main/build/tests/CMakeFiles/GranularDamper.dir

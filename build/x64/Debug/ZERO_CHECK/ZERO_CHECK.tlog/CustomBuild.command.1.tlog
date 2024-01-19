@@ -1,0 +1,10 @@
+^F:\PERSONWEB\PROJECT\DEMSIMULATION-MAIN\BUILD\CMAKEFILES\AE03DAA5D33BAE6AE8663DDE0389982F\GENERATE.STAMP.RULE
+setlocal
+D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/DEMSimulation-main -BF:/PersonWeb/Project/DEMSimulation-main/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file F:/PersonWeb/Project/DEMSimulation-main/build/DEMSimulation.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

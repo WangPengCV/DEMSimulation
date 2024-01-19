@@ -1,5 +1,6 @@
 #include "ContactForce.h"
 
+<<<<<<< HEAD
 void ContactForce::computerSphereSphereEffective(std::shared_ptr<SphereProperties> &sphereProps1, PropertyTypeID &type1,
                                                  std::shared_ptr<SphereProperties> &sphereProps2, PropertyTypeID &type2)
 {
@@ -121,14 +122,71 @@ void ContactForce::addParticleProperties(const std::shared_ptr<ParticlePropertyM
                     computerSpherePlanewallEffective(planeWallProps1, type1, sphereProps2, type2);
                 }
             }
+=======
+void ContactForce::addParticleProperties(const std::shared_ptr<ParticlePropertyManager> manager)
+{
+    for (auto &sub_propertys : manager->getParticleProperties())
+    {
+        PropertyTypeID i = sub_propertys.first;
+        const double radius_i = sub_propertys.second->getRadius();
+        const double youngs_modulus_i = sub_propertys.second->getYoungModulus();
+        const double poisson_ratio_i = sub_propertys.second->getPoissonRatio();
+        const double restitution_i = sub_propertys.second->getRestitution();
+        const double contact_damping_coefficient_i = -log(restitution_i) / sqrt(PI * PI + log(restitution_i) * log(restitution_i));
+        const double sliding_friction_i = sub_propertys.second->getSlidingFriction();
+        const double rolling_friction_i = sub_propertys.second->getRollingFriction();
+        const double mass_i = sub_propertys.second->getMass();
+
+        for (auto &another_sub_propertys : manager->getParticleProperties())
+        {
+            PropertyTypeID j = another_sub_propertys.first;
+            const double radius_j = another_sub_propertys.second->getRadius();
+            const double youngs_modulus_j = another_sub_propertys.second->getYoungModulus();
+            const double poisson_ratio_j = another_sub_propertys.second->getPoissonRatio();
+            const double restitution_j = another_sub_propertys.second->getRestitution();
+            const double contact_damping_coefficient_j = -log(restitution_j) / sqrt(PI * PI + log(restitution_j) * log(restitution_j));
+            const double sliding_friction_j = another_sub_propertys.second->getSlidingFriction();
+            const double rolling_friction_j = another_sub_propertys.second->getRollingFriction();
+            const double mass_j = another_sub_propertys.second->getMass();
+
+            effectiveradius[i][j] = 2 * (radius_i * radius_j) / (radius_i + radius_j);
+
+            effectivemass[i][j] = 2 * (mass_i * mass_j) / (mass_i + mass_j);
+
+            effectiveyoungsmodulus[i][j] = (youngs_modulus_i * youngs_modulus_j) /
+                                           ((youngs_modulus_j * (1 - poisson_ratio_i * poisson_ratio_i)) +
+                                            (youngs_modulus_i * (1 - poisson_ratio_j * poisson_ratio_j)));
+
+            effectiveshearmodulus[i][j] = (youngs_modulus_i * youngs_modulus_j) /
+                                          (2 * ((youngs_modulus_j * (2 - poisson_ratio_i) *
+                                                 (1 + poisson_ratio_i)) +
+                                                (youngs_modulus_i * (2 - poisson_ratio_j) *
+                                                 (1 + poisson_ratio_j))));
+
+            modelparameterbeta[i][j] = 2 * (contact_damping_coefficient_i * contact_damping_coefficient_j) /
+                                       (contact_damping_coefficient_i + contact_damping_coefficient_j + DBL_MIN);
+
+            effectiveslidingfriction[i][j] = 2 * sliding_friction_i * sliding_friction_j /
+                                             (sliding_friction_i + sliding_friction_j + DBL_MIN);
+
+            effectiverollingfriction[i][j] = 2 * rolling_friction_i * rolling_friction_j /
+                                             (rolling_friction_i + rolling_friction_j + DBL_MIN);
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
         }
     }
 }
 
+<<<<<<< HEAD
 void ContactForce::computeSphereSphereForce(const std::shared_ptr<SphereParticle> &sphere1, const std::shared_ptr<SphereParticle> &sphere2, double timeStep)
 {
 
     auto &manager = sphere1->getParticlePropertyManager();
+=======
+void ContactForce::computeSphereSphereForce(std::shared_ptr<SphereParticle> sphere1, std::shared_ptr<SphereParticle> sphere2, double timeStep)
+{
+
+    auto manager = sphere1->getParticlePropertyManager();
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 
     PropertyTypeID particletype_one = sphere1->getType();
     PropertyTypeID particletype_two = sphere2->getType();
@@ -185,7 +243,11 @@ void ContactForce::computeSphereSphereForce(const std::shared_ptr<SphereParticle
 
         ContactInformation &contact_info = contactinformationlist[id1][id2];
 
+<<<<<<< HEAD
         Eigen::Vector3d modified_tangential_displacement = contact_info.tangentialDisplacement + contact_info.previousTangentialVelocity * timeStep;
+=======
+        Eigen::Vector3d modified_tangential_displacement = contact_info.tangentialDisplacement +  contact_info.previousTangentialVelocity * timeStep;
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
         // Updating the contact_info container based on the new calculated values
         contact_info.tangentialDisplacement = modified_tangential_displacement;
         contact_info.previousTangentialVelocity = tangential_relative_velocity;
@@ -245,15 +307,27 @@ void ContactForce::computeSphereSphereForce(const std::shared_ptr<SphereParticle
         contact_info.normalForce = -normal_force;
         contact_info.tangentialForce = -tangential_force;
         nextcontactinformationlist[id1][id2] = contact_info;
+<<<<<<< HEAD
     }
 }
 
 void ContactForce::computePlaneWallSphereForce(const std::shared_ptr<PlaneWall> &planewall, const std::shared_ptr<SphereParticle> &sphere, double timeStep)
+=======
+
+    }
+}
+
+void ContactForce::computePlaneWallSphereForce(std::shared_ptr<PlaneWall> planewall, std::shared_ptr<SphereParticle> sphere, double timeStep)
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 {
     // Retrieve the sphere's center and radius
     Eigen::Vector3d sphereCenter = sphere->getPosition();
 
+<<<<<<< HEAD
     auto &manager = sphere->getParticlePropertyManager();
+=======
+    auto manager = sphere->getParticlePropertyManager();
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 
     PropertyTypeID spheretype = sphere->getType();
     PropertyTypeID walltype = planewall->getType();
@@ -267,6 +341,10 @@ void ContactForce::computePlaneWallSphereForce(const std::shared_ptr<PlaneWall> 
 
     // Compute the vector from a point on the plane to the sphere's center
     Eigen::Vector3d vecToSphereCenter = sphereCenter - planePoint;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     // Compute the distance from the sphere's center to the plane
     double distanceToPlane = vecToSphereCenter.dot(planeNormal);
 
@@ -298,7 +376,11 @@ void ContactForce::computePlaneWallSphereForce(const std::shared_ptr<PlaneWall> 
         int wallId = planewall->getId();
         int sphereId = sphere->getId();
 
+<<<<<<< HEAD
         auto &innerMap = wallcontactinformationlist[wallId]; // Access or create the inner map
+=======
+        auto &innerMap = contactinformationlist[wallId]; // Access or create the inner map
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
         auto innerIt = innerMap.find(sphereId);
 
         if (innerIt == innerMap.end())
@@ -308,11 +390,18 @@ void ContactForce::computePlaneWallSphereForce(const std::shared_ptr<PlaneWall> 
             innerMap[sphereId] = newContactInfo; // Insert the new contact information
         }
 
+<<<<<<< HEAD
         ContactInformation &contact_info = wallcontactinformationlist[wallId][sphereId];
 
         Eigen::Vector3d modified_tangential_displacement = contact_info.tangentialDisplacement + contact_info.previousTangentialVelocity * timeStep;
         // Updating the contact_info container based on the new calculated values
        
+=======
+        ContactInformation &contact_info = contactinformationlist[wallId][sphereId];
+
+        Eigen::Vector3d modified_tangential_displacement = contact_info.tangentialDisplacement + contact_info.previousTangentialVelocity * timeStep;
+        // Updating the contact_info container based on the new calculated values
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
         contact_info.tangentialDisplacement = modified_tangential_displacement;
         contact_info.previousTangentialVelocity = tangential_relative_velocity;
 
@@ -368,12 +457,17 @@ void ContactForce::computePlaneWallSphereForce(const std::shared_ptr<PlaneWall> 
 
         contact_info.normalForce = normal_force;
         contact_info.tangentialForce = tangential_force;
+<<<<<<< HEAD
         nextwallcontactinformationlist[wallId][sphereId] = contact_info;
+=======
+        nextcontactinformationlist[wallId][sphereId] = contact_info;
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     }
 }
 
 void ContactForce::updateContactInformation()
 {
+<<<<<<< HEAD
     contactinformationlist.swap(nextcontactinformationlist);
     nextcontactinformationlist.clear();
 
@@ -388,3 +482,11 @@ std::unordered_map<int, std::unordered_map<int, ContactInformation>>& ContactFor
 {
     return wallcontactinformationlist;
 }
+=======
+    contactinformationlist = nextcontactinformationlist;
+    nextcontactinformationlist.clear();
+
+    wallcontactinformationlist = nextwallcontactinformationlist;
+    nextwallcontactinformationlist.clear();
+}
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200

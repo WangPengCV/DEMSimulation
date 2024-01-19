@@ -2,8 +2,11 @@
 add_library(Particle_lib
     Particle.cpp
     SphereParticle.cpp
+<<<<<<< HEAD
     SphereCylinderBond.cpp
     Fiber.cpp
+=======
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 )
 
 # Link with ParticleProperties_lib to use PropertyTypeID

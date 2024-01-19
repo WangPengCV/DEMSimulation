@@ -20,6 +20,7 @@ vtk_module_autoinit(
     MODULES ${VTK_LIBRARIES}
   )
 
+<<<<<<< HEAD
 add_executable(GranularDamper GranularDamper.cpp)
 target_link_libraries(GranularDamper DEM_lib Visualization_lib ${VTK_LIBRARIES})
 
@@ -27,3 +28,12 @@ vtk_module_autoinit(
     TARGETS GranularDamper
     MODULES ${VTK_LIBRARIES}
   )
+=======
+  add_executable(TwoSphereImpact TwoSphereImpact.cpp)
+  target_link_libraries(TwoSphereImpact DEM_lib Visualization_lib ${VTK_LIBRARIES})
+  
+  vtk_module_autoinit(
+      TARGETS TwoSphereImpact
+      MODULES ${VTK_LIBRARIES}
+    )
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200

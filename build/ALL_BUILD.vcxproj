@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ResolveNugetPackages>false</ResolveNugetPackages>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A145AA0F-054A-3E83-8888-FF809F816253}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\opensource\Eigen\Eigen_install\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="F:\PersonWeb\Project\DEMSimulation-main\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule F:/PersonWeb/Project/DEMSimulation-main/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/DEMSimulation-main -BF:/PersonWeb/Project/DEMSimulation-main/build --check-stamp-file F:/PersonWeb/Project/DEMSimulation-main/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\cmake\share\cmake-3.28\Modules\CMakeCInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCXXCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCXXSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\CheckIncludeFile.cmake;D:\cmake\share\cmake-3.28\Modules\CheckLibraryExists.cmake;D:\cmake\share\cmake-3.28\Modules\CheckSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;D:\cmake\share\cmake-3.28\Modules\ExternalData.cmake;D:\cmake\share\cmake-3.28\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake\share\cmake-3.28\Modules\FindPackageMessage.cmake;D:\cmake\share\cmake-3.28\Modules\FindThreads.cmake;D:\cmake\share\cmake-3.28\Modules\GenerateExportHeader.cmake;D:\cmake\share\cmake-3.28\Modules\Internal\CheckCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\Internal\CheckFlagCommonConfig.cmake;D:\cmake\share\cmake-3.28\Modules\Internal\CheckSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\FindDirectX.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\VTK-targets.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\VTK-vtk-module-find-packages.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\VTK-vtk-module-properties.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\patches\99\FindOpenGL.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtk-config.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtk-find-package-helpers.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtk-prefix.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkCMakeBackports.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkEncodeString.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkHashSource.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkModule.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkModuleJson.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkModuleTesting.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkObjectFactory.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkTopologicalSort.cmake;D:\opensource\vtk\build\vtk-config-version.cmake;D:\opensource\vtk\build\vtk-config.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeCCompiler.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeCXXCompiler.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeRCCompiler.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule F:/PersonWeb/Project/DEMSimulation-main/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/DEMSimulation-main -BF:/PersonWeb/Project/DEMSimulation-main/build --check-stamp-file F:/PersonWeb/Project/DEMSimulation-main/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\cmake\share\cmake-3.28\Modules\CMakeCInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCXXCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCXXSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\CheckIncludeFile.cmake;D:\cmake\share\cmake-3.28\Modules\CheckLibraryExists.cmake;D:\cmake\share\cmake-3.28\Modules\CheckSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;D:\cmake\share\cmake-3.28\Modules\ExternalData.cmake;D:\cmake\share\cmake-3.28\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake\share\cmake-3.28\Modules\FindPackageMessage.cmake;D:\cmake\share\cmake-3.28\Modules\FindThreads.cmake;D:\cmake\share\cmake-3.28\Modules\GenerateExportHeader.cmake;D:\cmake\share\cmake-3.28\Modules\Internal\CheckCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\Internal\CheckFlagCommonConfig.cmake;D:\cmake\share\cmake-3.28\Modules\Internal\CheckSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\FindDirectX.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\VTK-targets.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\VTK-vtk-module-find-packages.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\VTK-vtk-module-properties.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\patches\99\FindOpenGL.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtk-config.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtk-find-package-helpers.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtk-prefix.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkCMakeBackports.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkEncodeString.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkHashSource.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkModule.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkModuleJson.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkModuleTesting.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkObjectFactory.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkTopologicalSort.cmake;D:\opensource\vtk\build\vtk-config-version.cmake;D:\opensource\vtk\build\vtk-config.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeCCompiler.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeCXXCompiler.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeRCCompiler.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule F:/PersonWeb/Project/DEMSimulation-main/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/DEMSimulation-main -BF:/PersonWeb/Project/DEMSimulation-main/build --check-stamp-file F:/PersonWeb/Project/DEMSimulation-main/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\cmake\share\cmake-3.28\Modules\CMakeCInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCXXCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCXXSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\CheckIncludeFile.cmake;D:\cmake\share\cmake-3.28\Modules\CheckLibraryExists.cmake;D:\cmake\share\cmake-3.28\Modules\CheckSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;D:\cmake\share\cmake-3.28\Modules\ExternalData.cmake;D:\cmake\share\cmake-3.28\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake\share\cmake-3.28\Modules\FindPackageMessage.cmake;D:\cmake\share\cmake-3.28\Modules\FindThreads.cmake;D:\cmake\share\cmake-3.28\Modules\GenerateExportHeader.cmake;D:\cmake\share\cmake-3.28\Modules\Internal\CheckCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\Internal\CheckFlagCommonConfig.cmake;D:\cmake\share\cmake-3.28\Modules\Internal\CheckSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\FindDirectX.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\VTK-targets.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\VTK-vtk-module-find-packages.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\VTK-vtk-module-properties.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\patches\99\FindOpenGL.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtk-config.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtk-find-package-helpers.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtk-prefix.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkCMakeBackports.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkEncodeString.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkHashSource.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkModule.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkModuleJson.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkModuleTesting.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkObjectFactory.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkTopologicalSort.cmake;D:\opensource\vtk\build\vtk-config-version.cmake;D:\opensource\vtk\build\vtk-config.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeCCompiler.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeCXXCompiler.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeRCCompiler.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule F:/PersonWeb/Project/DEMSimulation-main/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+D:\cmake\bin\cmake.exe -SF:/PersonWeb/Project/DEMSimulation-main -BF:/PersonWeb/Project/DEMSimulation-main/build --check-stamp-file F:/PersonWeb/Project/DEMSimulation-main/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\cmake\share\cmake-3.28\Modules\CMakeCInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCXXCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCXXSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\CheckCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\CheckIncludeFile.cmake;D:\cmake\share\cmake-3.28\Modules\CheckLibraryExists.cmake;D:\cmake\share\cmake-3.28\Modules\CheckSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;D:\cmake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;D:\cmake\share\cmake-3.28\Modules\ExternalData.cmake;D:\cmake\share\cmake-3.28\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake\share\cmake-3.28\Modules\FindPackageMessage.cmake;D:\cmake\share\cmake-3.28\Modules\FindThreads.cmake;D:\cmake\share\cmake-3.28\Modules\GenerateExportHeader.cmake;D:\cmake\share\cmake-3.28\Modules\Internal\CheckCompilerFlag.cmake;D:\cmake\share\cmake-3.28\Modules\Internal\CheckFlagCommonConfig.cmake;D:\cmake\share\cmake-3.28\Modules\Internal\CheckSourceCompiles.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\Windows.cmake;D:\cmake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\FindDirectX.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\VTK-targets.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\VTK-vtk-module-find-packages.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\VTK-vtk-module-properties.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\patches\99\FindOpenGL.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtk-config.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtk-find-package-helpers.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtk-prefix.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkCMakeBackports.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkEncodeString.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkHashSource.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkModule.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkModuleJson.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkModuleTesting.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkObjectFactory.cmake;D:\opensource\vtk\build\lib\cmake\vtk-9.3\vtkTopologicalSort.cmake;D:\opensource\vtk\build\vtk-config-version.cmake;D:\opensource\vtk\build\vtk-config.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeCCompiler.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeCXXCompiler.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeRCCompiler.cmake;F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\3.28.0-rc5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">F:\PersonWeb\Project\DEMSimulation-main\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="F:\PersonWeb\Project\DEMSimulation-main\build\ZERO_CHECK.vcxproj">
+      <Project>{2660FC7A-0F94-3CCA-A769-FA91B666E40C}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\DEMSimulation-main\build\src\ContactDetection\ContactDetection_lib.vcxproj">
+      <Project>{8825E56E-9843-35A1-9126-F75C9AB53906}</Project>
+      <Name>ContactDetection_lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\DEMSimulation-main\build\src\DEM_lib.vcxproj">
+      <Project>{643C2B7C-DA87-394C-BBCD-E5ED492F86B9}</Project>
+      <Name>DEM_lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\DEMSimulation-main\build\src\DynamicBoundaryMover\DynamicBoundaryMover_lib.vcxproj">
+      <Project>{7847DEF0-0A55-3B3C-B05A-8654F7CC510B}</Project>
+      <Name>DynamicBoundaryMover_lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\DEMSimulation-main\build\src\EventTask\EventTask_lib.vcxproj">
+      <Project>{97547CD0-AC7C-3158-82F4-A16D91678BC1}</Project>
+      <Name>EventTask_lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\DEMSimulation-main\build\tests\GranularDamper.vcxproj">
+      <Project>{3485C5C3-9F04-33B3-91E7-219DBBFBA301}</Project>
+      <Name>GranularDamper</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\DEMSimulation-main\build\tests\ParticlePropertiesTest.vcxproj">
+      <Project>{BA9F039F-765A-391E-BF27-375D3C360AE7}</Project>
+      <Name>ParticlePropertiesTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\DEMSimulation-main\build\src\ParticleProperties\ParticleProperties_lib.vcxproj">
+      <Project>{C508E87D-7732-3712-9C8D-115C4AE3781F}</Project>
+      <Name>ParticleProperties_lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\DEMSimulation-main\build\tests\ParticleSimulationTest.vcxproj">
+      <Project>{30C1777C-1E75-367B-A223-981010FA22ED}</Project>
+      <Name>ParticleSimulationTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\DEMSimulation-main\build\src\Particle\Particle_lib.vcxproj">
+      <Project>{6286964B-BD3F-3F78-8E29-6D8007A3EB5B}</Project>
+      <Name>Particle_lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\DEMSimulation-main\build\tests\SphereParticleTest.vcxproj">
+      <Project>{8EC00FAA-6AF1-3863-A026-3D00E6F52E91}</Project>
+      <Name>SphereParticleTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\PersonWeb\Project\DEMSimulation-main\build\tests\VisualizeGridBasedContactDetection.vcxproj">
+      <Project>{626623B0-2579-33CA-BEF7-6778762A108A}</Project>
+      <Name>VisualizeGridBasedContactDetection</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

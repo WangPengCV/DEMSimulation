@@ -2,6 +2,7 @@
 #include "ParticlePropertyManager.h"
 #include "PlaneWall.h"
 #include "SphereParticle.h"
+<<<<<<< HEAD
 #include "SphereCylinderBond.h"
 #include "Fiber.h"
 #include "GridBasedContactDetection.h"
@@ -9,6 +10,11 @@
 #include "RectangularContainer.h"
 #include "SpringOscillator.h"
 #include "FreeMotionTask.h"
+=======
+#include "GridBasedContactDetection.h"
+#include "ContactForce.h"
+#include "RectangularContainer.h"
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -40,6 +46,7 @@ public:
         return planewalls;
     }
 
+<<<<<<< HEAD
     const std::vector<std::shared_ptr<SphereParticle>> &getsphereParticles() const
     {
         return sphereparticles;
@@ -53,6 +60,13 @@ public:
     {
         return fiberbonds;
     }
+=======
+    const std::vector<std::shared_ptr<Particle>> &getParticles() const
+    {
+        return particles;
+    }
+
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     double getTotalTime() const
     {
         return totalTime;
@@ -63,6 +77,7 @@ public:
         return timestep;
     }
 
+<<<<<<< HEAD
     int getShowInterval() const
     {
         return showInterval;
@@ -70,6 +85,8 @@ public:
 
     double getAverageVelocity();
 
+=======
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     const std::map<int, Eigen::Vector3d> &getSpecificForces() const
     {
         return specificforces;
@@ -84,6 +101,7 @@ public:
         return simulationdimensions;
     }
 
+<<<<<<< HEAD
     const std::shared_ptr<RectangularContainer> &getRectangularContainer() const
     {
         return rectangularcontainer;
@@ -93,14 +111,28 @@ public:
     void initialSimulation();
     void generateRemainingParticles();
 
+=======
+    const std::shared_ptr<RectangularContainer>& getRectangularContainer() const
+    {
+        return rectangularcontainer;
+    }
+
+    //function for DEM
+    void initialContactDetection();
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     void handleCollisions();
     void applyExternalForces();
     void motion();
 
+<<<<<<< HEAD
     void initial_task();
     // task function
     void dotask();
     
+=======
+
+
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 
 private:
     bool parseVector3d(std::istringstream &iss, Eigen::Vector3d &vec);
@@ -113,16 +145,29 @@ private:
 
     void parsePlanewallProperties(std::istringstream &iss);
 
+<<<<<<< HEAD
     void parseFiberProperties(std::istringstream &iss);
 
+=======
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     void parsePlaneWall(std::istringstream &iss);
 
     void parseRectangularContainer(std::istringstream &iss);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     void parseRandomParticle(std::istringstream &iss);
 
     void parseSpecificParticle(std::istringstream &iss);
 
+<<<<<<< HEAD
+=======
+    void generateRemainingParticles();
+
+
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     std::shared_ptr<ParticlePropertyManager> manager;
 
     std::shared_ptr<ContactForce> contactforce;
@@ -131,6 +176,7 @@ private:
 
     std::shared_ptr<RectangularContainer> rectangularcontainer;
 
+<<<<<<< HEAD
     std::vector<std::shared_ptr<SphereParticle>> sphereparticles;
 
     std::vector<std::shared_ptr<Fiber>> fibers; 
@@ -138,6 +184,9 @@ private:
     std::vector<std::shared_ptr<SphereCylinderBond>> fiberbonds;
 
     std::vector<std::shared_ptr<SphereParticle>> fibershpereparticles;
+=======
+    std::vector<std::shared_ptr<Particle>> particles;
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 
     std::shared_ptr<GridBasedContactDetection> gridbasedcontactdetection;
 
@@ -146,8 +195,11 @@ private:
 
     double totalTime;
 
+<<<<<<< HEAD
     int showInterval;
 
+=======
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     Eigen::Vector3d gravity;
 
     std::map<int, Eigen::Vector3d> specificforces;
@@ -156,6 +208,7 @@ private:
 
     Eigen::Vector3d simulationdimensions;
 
+<<<<<<< HEAD
     bool gernerateSphereFlag;
 
     bool gernerateFiberFlag;
@@ -170,4 +223,9 @@ private:
 
 
 
+=======
+
+    bool gernerateFlag;
+    std::map<int,std::string> gernerateInfor;
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 };

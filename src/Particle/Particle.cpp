@@ -1,7 +1,11 @@
 #include "Particle.h"
 
 Particle::Particle(int id, PropertyTypeID type, int state,
+<<<<<<< HEAD
                    const std::shared_ptr<ParticlePropertyManager>& manager,
+=======
+                   std::shared_ptr<ParticlePropertyManager> manager,
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
                    const Eigen::Vector3d &position,
                    const Eigen::Vector3d &velocity, const Eigen::Vector3d &omega,
                    const Eigen::Vector3d &force, const Eigen::Vector3d &torque)

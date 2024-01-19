@@ -5,8 +5,12 @@ add_subdirectory(BoundaryCondition)
 add_subdirectory(Visualization)
 add_subdirectory(ContactDetection)
 add_subdirectory(ContactForce)
+<<<<<<< HEAD
 add_subdirectory(DynamicBoundaryMover)
 add_subdirectory(EventTask)
+=======
+
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 # Define the DEM_lib library, which may include other source files in the src directory
 add_library(DEM_lib
     DEMProperties.cpp
@@ -21,8 +25,11 @@ target_link_libraries(DEM_lib
     Visualization_lib
     ContactDetection_lib
     ContactForce_lib
+<<<<<<< HEAD
     DynamicBoundaryMover_lib
     EventTask_lib
+=======
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 )
 
 # Specify the include directories for the DEM_lib library
@@ -34,6 +41,10 @@ target_include_directories(DEM_lib PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Visualization
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactDetection
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactForce
+<<<<<<< HEAD
     ${CMAKE_CURRENT_SOURCE_DIR}/DynamicBoundaryMover
     ${CMAKE_CURRENT_SOURCE_DIR}/EventTask
+=======
+
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 )

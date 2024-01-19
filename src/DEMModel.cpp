@@ -1,5 +1,8 @@
 #include "DEMModel.h"
+<<<<<<< HEAD
 #include <filesystem>
+=======
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 
 // Initialize DEMModel
 DEMModel::DEMModel(const std::string &filename)
@@ -14,6 +17,7 @@ DEMModel::DEMModel(const std::string &filename)
 
 void DEMModel::runSimulation()
 {
+<<<<<<< HEAD
     
 
     double currentTime = 0.0;
@@ -61,10 +65,20 @@ void DEMModel::runSimulation()
         // Create the directory if it does not exist
         std::filesystem::create_directories(dirPath);
     }
+=======
+    double timeStep = DEMproperties->getTimestep();
+    double totalTime = DEMproperties->getTotalTime();
+    double currentTime = 0.0;
+    DEMproperties->initialContactDetection();
+
+    
+
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     while (currentTime < totalTime)
     {
         DEMproperties->applyExternalForces();
         DEMproperties->handleCollisions();
+<<<<<<< HEAD
         DEMproperties->dotask();
 
         // Update visualization at specified intervals
@@ -80,6 +94,11 @@ void DEMModel::runSimulation()
 
 
 
+=======
+        DEMproperties->motion();
+        vis->Update();
+        currentTime += timeStep;
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     }
 }
 

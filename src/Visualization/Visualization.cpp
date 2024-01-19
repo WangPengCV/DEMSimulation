@@ -25,6 +25,7 @@
 #include <vtkAppendPolyData.h>
 #include <vtkRegularPolygonSource.h>
 #include "LineSphereSource.h"
+<<<<<<< HEAD
 #include <vtkWindowToImageFilter.h>
 #include <vtkBMPWriter.h>
 #include <vtkTubeFilter.h>
@@ -47,16 +48,29 @@ Visualization::Visualization(const DEMProperties &DEMproperties) : DEMproperties
     fiberspherepoints = vtkSmartPointer<vtkPoints>::New();
     cylinderpoints = vtkSmartPointer<vtkPoints>::New();
 
+=======
+
+Visualization::Visualization(const DEMProperties &DEMproperties) : DEMproperties(DEMproperties)
+{
+    spherepoints = vtkSmartPointer<vtkPoints>::New();
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     UpdateSphere();
 
     vtkSmartPointer<vtkSphereSource> sphereSource = vtkSmartPointer<vtkSphereSource>::New();
     sphereSource->SetPhiResolution(20);   // Increase vertical resolution
     sphereSource->SetThetaResolution(20); // Increase horizontal resolution
+<<<<<<< HEAD
     sphereSource->SetRadius(1);
 
     vtkSmartPointer<vtkGlyph3D> glyph3D = vtkSmartPointer<vtkGlyph3D>::New();
     glyph3D->SetSourceConnection(sphereSource->GetOutputPort());
     glyph3D->SetInputData(spherepolyData);
+=======
+
+    vtkSmartPointer<vtkGlyph3D> glyph3D = vtkSmartPointer<vtkGlyph3D>::New();
+    glyph3D->SetSourceConnection(sphereSource->GetOutputPort());
+    glyph3D->SetInputData(polyData);
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     glyph3D->SetScaleModeToScaleByScalar();
     glyph3D->SetInputArrayToProcess(0, 0, 0, vtkDataObject::FIELD_ASSOCIATION_POINTS, "scales");
     glyph3D->SetColorModeToColorByScalar();
@@ -104,6 +118,7 @@ Visualization::Visualization(const DEMProperties &DEMproperties) : DEMproperties
         planeWallSource.push_back(planesource);
         planeWallActor.push_back(planeactor);
     }
+<<<<<<< HEAD
     if (DEMproperties.getRectangularContainer())
     {
         for (const auto &wall : DEMproperties.getRectangularContainer()->getPlaneWall())
@@ -181,6 +196,39 @@ Visualization::Visualization(const DEMProperties &DEMproperties) : DEMproperties
     renderer->SetBackground(1, 1, 1);
     renderWindow->SetSize(540, 540);
     renderWindow->SetPosition(0, 0);
+=======
+
+    for (const auto &wall : DEMproperties.getRectangularContainer()->getPlaneWall())
+    {
+        // Create a plane source
+        vtkSmartPointer<vtkPlaneSource> planesource = vtkSmartPointer<vtkPlaneSource>::New();
+        planesource->SetOrigin(wall->getCorner2().x(), wall->getCorner2().y(), wall->getCorner2().z());
+        planesource->SetPoint1(wall->getCorner1().x(), wall->getCorner1().y(), wall->getCorner1().z());
+        planesource->SetPoint2(wall->getCorner3().x(), wall->getCorner3().y(), wall->getCorner3().z());
+
+        // Map the transformed plane to a mapper
+        vtkSmartPointer<vtkPolyDataMapper> planemapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+        planemapper->SetInputConnection(planesource->GetOutputPort());
+
+        // Create an actor to represent the wall
+        vtkSmartPointer<vtkActor> planeactor = vtkSmartPointer<vtkActor>::New();
+        planeactor->SetMapper(planemapper);
+        // Set properties like color, transparency, etc.
+        planeactor->GetProperty()->SetColor(1.0, 1.0, 1.0); // Red color
+        planeactor->GetProperty()->EdgeVisibilityOn();
+        planeactor->GetProperty()->SetOpacity(0.1);
+
+        // Add the actor to the renderer
+        renderer->AddActor(planeactor);
+
+        // Store the sources and actors for later updates
+        planeWallSource.push_back(planesource);
+        planeWallActor.push_back(planeactor);
+    }
+
+    renderer->SetBackground(1, 1, 1);
+
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     renderWindowInteractor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
     renderWindowInteractor->SetRenderWindow(renderWindow);
 }
@@ -189,12 +237,16 @@ void Visualization::Update()
 {
     UpdateSphere();
     UpdatePlaneWall();
+<<<<<<< HEAD
     UpdataFibers();
+=======
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     renderWindowInteractor->GetRenderWindow()->Render();
     if (renderWindowInteractor)
     {
         renderWindowInteractor->ProcessEvents();
     }
+<<<<<<< HEAD
     vtkSmartPointer<vtkWindowToImageFilter> windowto_image_filter = vtkSmartPointer<vtkWindowToImageFilter>::New();
     windowto_image_filter->SetInput(renderWindow);
     windowto_image_filter->SetScale(1);
@@ -210,6 +262,8 @@ void Visualization::Update()
     writer->SetInputConnection(windowto_image_filter->GetOutputPort());
     writer->Write();
     count_numer++;
+=======
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 }
 
 void Visualization::UpdateSphere()
@@ -222,6 +276,7 @@ void Visualization::UpdateSphere()
     vtkSmartPointer<vtkUnsignedCharArray> colors = vtkSmartPointer<vtkUnsignedCharArray>::New();
     colors->SetName("colors");
     colors->SetNumberOfComponents(3); // 3 components for R, G, B
+<<<<<<< HEAD
     for (const auto &particle : DEMproperties.getsphereParticles())
     {
         auto manager = particle->getParticlePropertyManager();
@@ -325,6 +380,32 @@ void Visualization::UpdataFibers()
     fiberspherepolyData->SetPoints(fiberspherepoints);
     fiberspherepolyData->GetPointData()->SetScalars(spherecolors);
     fiberspherepolyData->GetPointData()->AddArray(spherescales);
+=======
+    for (const auto &particle : DEMproperties.getParticles())
+    {
+        auto manager = particle->getParticlePropertyManager();
+        auto typemapping = manager->gettypeMapping();
+
+        if (typemapping[particle->getType().getCategory()] == ParticleType::SPHERE)
+        {
+            spherepoints->InsertNextPoint(particle->getPosition().x(), particle->getPosition().y(), particle->getPosition().z());
+            float scale = 2 * manager->getSphereProperties(particle->getType())->getRadius();
+            scales->InsertNextValue(scale);
+            unsigned char color[3] = {0, 0, 255};
+            colors->InsertNextTypedTuple(color);
+        }
+    }
+    // spherepoints->Modified();
+
+    if (!polyData)
+    {
+        polyData = vtkSmartPointer<vtkPolyData>::New();
+        polyData->SetPoints(spherepoints);
+    }
+
+    polyData->GetPointData()->SetScalars(colors);
+    polyData->GetPointData()->AddArray(scales);
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 }
 
 void Visualization::UpdatePlaneWall()
@@ -339,6 +420,7 @@ void Visualization::UpdatePlaneWall()
         plane_index++;
     }
 
+<<<<<<< HEAD
     if (DEMproperties.getRectangularContainer())
     {
         for (const auto &wall : DEMproperties.getRectangularContainer()->getPlaneWall())
@@ -349,5 +431,14 @@ void Visualization::UpdatePlaneWall()
             planeWallSource[plane_index]->SetPoint2(wall->getCorner3().x(), wall->getCorner3().y(), wall->getCorner3().z());
             plane_index++;
         }
+=======
+    for (const auto &wall : DEMproperties.getRectangularContainer()->getPlaneWall())
+    {
+
+        planeWallSource[plane_index]->SetOrigin(wall->getCorner2().x(), wall->getCorner2().y(), wall->getCorner2().z());
+        planeWallSource[plane_index]->SetPoint1(wall->getCorner1().x(), wall->getCorner1().y(), wall->getCorner1().z());
+        planeWallSource[plane_index]->SetPoint2(wall->getCorner3().x(), wall->getCorner3().y(), wall->getCorner3().z());
+        plane_index++;
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     }
 }

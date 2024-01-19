@@ -1,6 +1,7 @@
 #include "RectangularContainer.h"
 
 // Implementation of RectangularContainer constructor
+<<<<<<< HEAD
 RectangularContainer::RectangularContainer(int Id, const PropertyTypeID &Type, int State,
                                            const Eigen::Vector3d &LowerCorner,
                                            const Eigen::Vector3d &Dimensions,
@@ -24,6 +25,16 @@ void RectangularContainer::setMass(std::shared_ptr<ParticlePropertyManager> mana
 void RectangularContainer::setCenter(const Eigen::Vector3d& newCenter)
 {
     center = newCenter;
+=======
+RectangularContainer::RectangularContainer(int id, const PropertyTypeID &type, int state,
+                                           const Eigen::Vector3d &lowerCorner,
+                                           const Eigen::Vector3d &dimensions,
+                                           const Eigen::Vector3d &velocity)
+    : BoundaryCondition(id, type, state), lowerCorner(lowerCorner), dimensions(dimensions)
+{
+    walls.resize(6);
+    createWalls(velocity);
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 }
 
 void RectangularContainer::rotateContainer(double angleDegrees, const Eigen::Vector3d &axis)
@@ -33,6 +44,10 @@ void RectangularContainer::rotateContainer(double angleDegrees, const Eigen::Vec
 
     // Create a rotation matrix
     Eigen::AngleAxisd rotationMatrix(angleRadians, axis.normalized());
+<<<<<<< HEAD
+=======
+
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     // Rotate each wall
     for (auto &wall : walls)
     {
@@ -44,6 +59,7 @@ void RectangularContainer::rotateContainer(double angleDegrees, const Eigen::Vec
 
         // Update the wall with new corners (and possibly normal if needed)
         wall = std::make_shared<PlaneWall>(wall->getId(), wall->getType(), wall->getState(),
+<<<<<<< HEAD
                                            normalRotated, // Might need to rotate normal as well
                                            corner1Rotated, corner2Rotated, corner3Rotated,
                                            wall->getVelocity());
@@ -74,6 +90,14 @@ void RectangularContainer::translateToCenter(const Eigen::Vector3d& simulationDo
 }
 
 void RectangularContainer::createWalls()
+=======
+                         normalRotated, // Might need to rotate normal as well
+                         corner1Rotated, corner2Rotated, corner3Rotated,
+                         wall->getVelociy());
+    }
+}
+void RectangularContainer::createWalls(const Eigen::Vector3d &velocity)
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 {
     // Assuming y is vertical, x and z are horizontal dimensions
     Eigen::Vector3d topNormal(0, -1, 0);   // Normal pointing upwards
@@ -94,6 +118,7 @@ void RectangularContainer::createWalls()
     Eigen::Vector3d corner7 = corner4 + Eigen::Vector3d(0, dimensions.y(), 0);
     Eigen::Vector3d corner8 = corner1 + Eigen::Vector3d(0, dimensions.y(), 0);
 
+<<<<<<< HEAD
     walls[0] = std::make_shared<PlaneWall>(0, type, state, leftNormal, corner1, corner2, corner3, Eigen::Vector3d::Zero());
     walls[1] = std::make_shared<PlaneWall>(1, type, state, rightNormal, corner4, corner5, corner6, Eigen::Vector3d::Zero());
     walls[2] = std::make_shared<PlaneWall>(2, type, state, bottomNormal, corner4, corner5, corner2, Eigen::Vector3d::Zero());
@@ -117,14 +142,27 @@ void RectangularContainer::resetForce()
     force.setZero();
 }
 
+=======
+    walls[0] = std::make_shared<PlaneWall>(0, type, state, leftNormal, corner1, corner2, corner3, velocity);
+    walls[1] = std::make_shared<PlaneWall>(1, type, state, rightNormal, corner4, corner5, corner6, velocity);
+    walls[2] = std::make_shared<PlaneWall>(2, type, state, bottomNormal, corner4, corner5, corner2, velocity);
+    walls[3] = std::make_shared<PlaneWall>(3, type, state, frontNormal, corner5, corner2, corner3, velocity);
+    walls[4] = std::make_shared<PlaneWall>(4, type, state, backNormal, corner4, corner1, corner8, velocity);
+    walls[5] = std::make_shared<PlaneWall>(5, type, state, topNormal, corner7, corner6, corner3, velocity);
+}
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 std::string RectangularContainer::save_tostring() const
 {
     std::ostringstream ss;
     ss << "RECTANGULARCONTAINER, " << id << ", " << type.getCategory() << ", " << type.getSubType() << ", " << state << ", "
        << lowerCorner.x() << ", " << lowerCorner.y() << ", " << lowerCorner.z() << ", "
        << dimensions.x() << ", " << dimensions.y() << ", " << dimensions.z() << ", "
+<<<<<<< HEAD
        << rotation << ", "
        << center.x() << ", " << center.y() << ", " << center.z() << ", "
        << velocity.x() << ", " << velocity.y() << ", " << velocity.z();
+=======
+       << walls[0]->getVelociy().x() << ", " << walls[0]->getVelociy().y() << ", " << walls[0]->getVelociy().z();
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     return ss.str();
 }

@@ -8,7 +8,11 @@ class Particle
 {
 public:
     Particle(int id, PropertyTypeID type, int state,
+<<<<<<< HEAD
              const std::shared_ptr<ParticlePropertyManager>& manager,
+=======
+             std::shared_ptr<ParticlePropertyManager> manager,
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
              const Eigen::Vector3d &position,
              const Eigen::Vector3d &velocity = Eigen::Vector3d::Zero(),
              const Eigen::Vector3d &omega = Eigen::Vector3d::Zero(),
@@ -17,6 +21,13 @@ public:
     
     virtual ~Particle();
 
+<<<<<<< HEAD
+=======
+    virtual double computeOverlap(const std::shared_ptr<Particle>& particle) = 0;
+
+    virtual double computeOverlap(const std::shared_ptr<PlaneWall>& planewall) = 0;
+
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
     virtual void updateVelocity(double deltaTime, Eigen::Vector3d& gravity) = 0;
 
     virtual void updateOmega(double deltaTime) = 0;

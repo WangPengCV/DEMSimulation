@@ -17,6 +17,10 @@ void GridBasedContactDetection::initial(double domain_x, double domain_y, double
     gridSizeZ = domainZ / numberOfGridZ;
 
     gridsize = std::min(std::min(gridSizeX, gridSizeY), gridSizeZ);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 }
 
 int GridBasedContactDetection::getGridIndex(double x, double y, double z)
@@ -28,6 +32,7 @@ int GridBasedContactDetection::getGridIndex(double x, double y, double z)
     return cellX + cellZ * numberOfGridX + cellY * numberOfGridX * numberOfGridZ;
 }
 
+<<<<<<< HEAD
 void GridBasedContactDetection::assignParticleToGrid(const std::vector<std::shared_ptr<SphereParticle>> &sphereparticles,
                                                      const std::vector<std::shared_ptr<SphereCylinderBond>> &fiberbonds,
                                                      const std::vector<std::shared_ptr<SphereParticle>> &fibersphereparticles)
@@ -97,6 +102,26 @@ void GridBasedContactDetection::assignParticleToGrid(const std::vector<std::shar
             int maxCellX = static_cast<int>((center.x() + radius) / gridSizeX);
             int maxCellY = static_cast<int>((center.y() + radius) / gridSizeY);
             int maxCellZ = static_cast<int>((center.z() + radius) / gridSizeZ);
+=======
+void GridBasedContactDetection::assignParticleToGrid(const std::vector<std::shared_ptr<Particle>> &particles)
+{
+    gridSaveParticles.clear(); // Clear previous data
+    for (const auto &particle : particles)
+    {
+        int category = particle->getType().getCategory();
+        auto manager = particle->getParticlePropertyManager();
+        auto typemapping = manager->gettypeMapping();
+        if (typemapping[category] == ParticleType::SPHERE)
+        {
+            auto radius = manager->getSphereProperties(particle->getType())->getRadius();
+            int minCellX = static_cast<int>((particle->getPosition().x() - radius) / gridSizeX);
+            int minCellY = static_cast<int>((particle->getPosition().y() - radius) / gridSizeY);
+            int minCellZ = static_cast<int>((particle->getPosition().z() - radius) / gridSizeZ);
+
+            int maxCellX = static_cast<int>((particle->getPosition().x() + radius) / gridSizeX);
+            int maxCellY = static_cast<int>((particle->getPosition().y() + radius) / gridSizeY);
+            int maxCellZ = static_cast<int>((particle->getPosition().z() + radius) / gridSizeZ);
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 
             // Iterate over the range of grid cells and assign the particle's ID
             for (int x = minCellX; x <= maxCellX; x++)
@@ -107,7 +132,11 @@ void GridBasedContactDetection::assignParticleToGrid(const std::vector<std::shar
                     {
 
                         int gridIndex = x + z * numberOfGridX + y * numberOfGridX * numberOfGridZ;
+<<<<<<< HEAD
                         gridSaveFiberBonds[gridIndex].insert(particle->getId());
+=======
+                        gridSaveParticles[gridIndex].insert(particle->getId());
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
                     }
                 }
             }
@@ -115,6 +144,7 @@ void GridBasedContactDetection::assignParticleToGrid(const std::vector<std::shar
     }
 }
 
+<<<<<<< HEAD
 void GridBasedContactDetection::ParticleBroadPhase(const std::vector<std::shared_ptr<SphereParticle>> &particles,
                                                    const std::vector<std::shared_ptr<SphereCylinderBond>> &fiberbonds,
                                                    const std::vector<std::shared_ptr<SphereParticle>> &fibersphereparticles,
@@ -160,14 +190,36 @@ void GridBasedContactDetection::ParticleBroadPhase(const std::vector<std::shared
                 int id1 = *it1;
                 int id2 = *it2;
                 FFcontactparis[std::min(id1, id2)].insert(std::max(id1, id2));
+=======
+void GridBasedContactDetection::ParticleBroadPhase(const std::vector<std::shared_ptr<Particle>> &particles, std::unordered_map<int, std::unordered_set<int>> &pp_contact_paris)
+{
+    assignParticleToGrid(particles);
+    for (const auto &grid_entry : gridSaveParticles)
+    {
+        const auto &particles_in_grid = grid_entry.second;
+
+        for (auto it1 = particles_in_grid.begin(); it1 != particles_in_grid.end(); ++it1)
+        {
+
+            for (auto it2 = std::next(it1); it2 != particles_in_grid.end(); ++it2)
+            {
+                int id1 = *it1;
+                int id2 = *it2;
+                pp_contact_paris[std::min(id1, id2)].insert(std::max(id1, id2));
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
             }
         }
     }
 }
 
+<<<<<<< HEAD
 void GridBasedContactDetection::planewallBroadPhase(std::vector<std::shared_ptr<PlaneWall>> &planewalls,
                                                     std::unordered_map<int, std::unordered_set<int>> &PScontactpairs,
                                                     std::unordered_map<int, std::unordered_set<int>> &PFcontactpairs)
+=======
+void GridBasedContactDetection::planewallBroadPhase(const std::vector<std::shared_ptr<Particle>> &particles, std::vector<std::shared_ptr<PlaneWall>> &planewalls,
+                                                    std::unordered_map<int, std::unordered_set<int>> &pw_contact_paris)
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 {
 
     for (auto &plane : planewalls)
@@ -191,6 +243,7 @@ void GridBasedContactDetection::planewallBroadPhase(std::vector<std::shared_ptr<
     {
         auto wall_id = grid_entry.first;
         const auto &grid_indices = grid_entry.second;
+<<<<<<< HEAD
         auto &pscontactSet = PScontactpairs[wall_id];
         auto &pfcontactSet = PFcontactpairs[wall_id];
 
@@ -256,6 +309,20 @@ void GridBasedContactDetection::RectangularContainerBroadPhase(std::shared_ptr<R
                 const auto &particlesInGrid = gridSaveFiberBonds[grid_id];
 
                 pfcontactSet.insert(particlesInGrid.begin(), particlesInGrid.end());
+=======
+        auto &contactSet = pw_contact_paris[wall_id];
+
+        for (int grid_id : grid_indices)
+        {
+            if (gridSaveParticles.find(grid_id) != gridSaveParticles.end())
+            {
+                const auto &particlesInGrid = gridSaveParticles[grid_id];
+                
+                contactSet.insert(particlesInGrid.begin(), particlesInGrid.end());
+                
+               
+               
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
             }
         }
     }

@@ -4,7 +4,10 @@ add_library(ParticleProperties_lib
     SphereProperties.cpp
     PlanewallProperties.cpp
     ParticlePropertyManager.cpp
+<<<<<<< HEAD
     FiberProperties.cpp
+=======
+>>>>>>> 686cbfa3ebadc1d4aba7bce443978911f7964200
 )
 
 # Specify the include directory for the ParticleProperties library
