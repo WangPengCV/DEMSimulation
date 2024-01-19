@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug (MSVC)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/tests/Debug/GranularDamper.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [{"name": "PATH", "value": "D:\\opensource\\vtk\\install\\debug\\bin;${env:PATH}"}],
+            "console": "internalConsole",
+        },
+        {
+            "name": "Release (MSVC)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/tests/Release/TwoSphereImpact.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [{"name": "PATH", "value": "D:\\opensource\\vtk\\install\\release\\bin;${env:PATH}"}],
+            "console": "internalConsole",
+        }
+    ]
+}
