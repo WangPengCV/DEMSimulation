@@ -38,13 +38,13 @@ public:
     //Method to add FiberProperties
     void addFiberProperties(const PropertyTypeID &id, std::shared_ptr<FiberProperties>& properties);
     // Method to get SphereProperties
-    const std::shared_ptr<SphereProperties>& getSphereProperties(const PropertyTypeID &id) const
+    const std::shared_ptr<SphereProperties> getSphereProperties(const PropertyTypeID &id) const
     {
         auto it = propertiesMap.find(id);
         if (it != propertiesMap.end())
         {
             // Use dynamic_cast to ensure the correct type is returned
-            auto& sphereProperties = std::static_pointer_cast<SphereProperties>(it->second);
+            const auto sphereProperties = std::static_pointer_cast<SphereProperties>(it->second);
             if (sphereProperties)
             {
                 return sphereProperties;
@@ -59,13 +59,13 @@ public:
     }
 
     // Method to get SphereProperties
-    const std::shared_ptr<PlanewallProperties>& getPlanewallProperties(const PropertyTypeID &id) const
+    const std::shared_ptr<PlanewallProperties> getPlanewallProperties(const PropertyTypeID &id) const
     {
         auto it = propertiesMap.find(id);
         if (it != propertiesMap.end())
         {
             // Use dynamic_cast to ensure the correct type is returned
-            auto& planewallProperties = std::static_pointer_cast<PlanewallProperties>(it->second);
+            const auto planewallProperties = std::static_pointer_cast<PlanewallProperties>(it->second);
             if (planewallProperties)
             {
                 return planewallProperties;
@@ -79,13 +79,13 @@ public:
         throw std::runtime_error("Property with ID not found.");
     }
 
-    const std::shared_ptr<FiberProperties>& getFiberProperties(const PropertyTypeID& id) const
+    const std::shared_ptr<FiberProperties> getFiberProperties(const PropertyTypeID& id) const
     {
         auto it = propertiesMap.find(id);
         if (it != propertiesMap.end())
         {
             // Use dynamic_cast to ensure the correct type is returned
-            auto& fiberProperties = std::static_pointer_cast<FiberProperties>(it->second);
+            const auto fiberProperties = std::static_pointer_cast<FiberProperties>(it->second);
             if (fiberProperties)
             {
                 return fiberProperties;

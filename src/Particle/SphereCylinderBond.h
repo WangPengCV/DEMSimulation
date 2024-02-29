@@ -20,6 +20,8 @@ public:
     int getNeighborelement1() const;
     int getNeighborelement2() const;
     int getId() const;
+    int getFiberId() const;
+
     const PropertyTypeID &getType() const;
 
     void updateBond(std::shared_ptr<SphereParticle> &sphere1, std::shared_ptr<SphereParticle> &sphere2, double timeStep);
@@ -28,9 +30,9 @@ public:
     std::shared_ptr<ParticlePropertyManager>  getParticlePropertyManager() const { return manager;}
 
     static void computeOverlap(const Eigen::Vector3d &node1position, const Eigen::Vector3d &node2position,
-                        const Eigen::Vector3d &sphereposition, Eigen::Vector3d &projection);
-    static void computeOverlap(const Eigen::Vector3d &thisnode1position, const Eigen::Vector3d &thisnode2position, Eigen::Vector3d &projection1,
-                        const Eigen::Vector3d &anothernode1position, const Eigen::Vector3d &anothernode2position, Eigen::Vector3d &projection2);
+                        const Eigen::Vector3d &sphereposition, double &t,Eigen::Vector3d &projection);
+    static void computeOverlap(const Eigen::Vector3d &thisnode1position, const Eigen::Vector3d &thisnode2position, double& s,
+                        const Eigen::Vector3d &anothernode1position, const Eigen::Vector3d &anothernode2position, double& t);
     static void computeOverlap(const Eigen::Vector3d &node1position, const Eigen::Vector3d &node2position,
                         const std::shared_ptr<PlaneWall> &planewall, Eigen::Vector3d &projection);
 

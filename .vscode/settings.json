@@ -92,5 +92,6 @@
         "*.in": "cpp",
         "*.txx": "cpp",
         "filesystem": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

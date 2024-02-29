@@ -40,36 +40,56 @@ public:
     void computerSphereSphereEffective(std::shared_ptr<SphereProperties> &sphereproperties1, PropertyTypeID &type1,
                                        std::shared_ptr<SphereProperties> &sphereproperties2, PropertyTypeID &type2);
 
-    void computerSphereFiberEffective();
-
     void computerSpherePlanewallEffective(std::shared_ptr<PlanewallProperties> &planewallproperties, PropertyTypeID &type1,
                                           std::shared_ptr<SphereProperties> &sphereproperties, PropertyTypeID &type2);
 
-    void computerFiberPlanewallEffective();
+    void computerFiberFiberEffective(std::shared_ptr<FiberProperties> &fibereproperties1, PropertyTypeID &type1,
+                                     std::shared_ptr<FiberProperties> &fiberproperties2, PropertyTypeID &type2);
+
+    void computerSphereFiberEffective(std::shared_ptr<SphereProperties> &sphereproperties1, PropertyTypeID &type1,
+                                      std::shared_ptr<FiberProperties> &fiberproperties2, PropertyTypeID &type2);
+
+    void computerFiberPlanewallEffective(std::shared_ptr<PlanewallProperties> &planewallproperties, PropertyTypeID &type1,
+                                         std::shared_ptr<FiberProperties> &fiberproperties2, PropertyTypeID &type2);
 
     // Method to compute force between two spherical particles
     void computeSphereSphereForce(const std::shared_ptr<SphereParticle> &sphere1, const std::shared_ptr<SphereParticle> &sphere2, double timeStep);
     // Method to compute force between a sphere particle and a plane wall
     void computePlaneWallSphereForce(const std::shared_ptr<PlaneWall> &planeWall, const std::shared_ptr<SphereParticle> &sphere, double timeStep);
     // Method to compute force between two spherical particles
-    void computeSphereFiberForce(const std::shared_ptr<SphereParticle> &sphere, const std::shared_ptr<SphereCylinderBond> & fiberbond,
+    void computeSphereFiberForce(const std::shared_ptr<SphereParticle> &sphere, const std::shared_ptr<SphereCylinderBond> &fiberbond,
                                  const std::shared_ptr<SphereParticle> &node1, const std::shared_ptr<SphereParticle> &node2, double timeStep);
-    // Method to compute force between a sphere particle and a plane wall
-    //void computePlaneWallSphereForce(const std::shared_ptr<PlaneWall> &planeWall, const std::shared_ptr<SphereParticle> &sphere, double timeStep);
-    // Method to compute force between a sphere particle and a plane wall
-    //void computePlaneWallSphereForce(const std::shared_ptr<PlaneWall> &planeWall, const std::shared_ptr<SphereParticle> &sphere, double timeStep);
-
+    // Method to compute force between a fiber particle and a plane wall
+    void computePlaneWallFiberForce(const std::shared_ptr<PlaneWall> &planeWall, const std::shared_ptr<SphereCylinderBond> &fiberbond,
+                                    const std::shared_ptr<SphereParticle> &node1, const std::shared_ptr<SphereParticle> &node2, double timeStep);
+    // Method to compute force between two spherical particles
+    void computeFiberFiberForce(const std::shared_ptr<SphereCylinderBond> &fiberbond1, const std::shared_ptr<SphereParticle> &bondonenode1, const std::shared_ptr<SphereParticle> &bondonenode2,
+                                const std::shared_ptr<SphereCylinderBond> &fiberbond2, const std::shared_ptr<SphereParticle> &bondtwonode1, const std::shared_ptr<SphereParticle> &bondtwonode2,
+                                double timeStep);
     void updateContactInformation();
 
-    std::unordered_map<int, std::unordered_map<int, ContactInformation>> &getContactInformationList();
-    std::unordered_map<int, std::unordered_map<int, ContactInformation>> &getWallContactInformationList();
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> &getSphereSphereContactInformationList();
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> &getWallSphereContactInformationList();
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> &getWallFiberContactInformationList();
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> &getSphereFiberContactInformationList();
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> &getFiberFiberContactInformationList();
 
 private:
-    std::unordered_map<int, std::unordered_map<int, ContactInformation>> contactinformationlist;
-    std::unordered_map<int, std::unordered_map<int, ContactInformation>> nextcontactinformationlist;
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> spherespherecontactinformationlist;
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> nextspherespherecontactinformationlist;
 
-    std::unordered_map<int, std::unordered_map<int, ContactInformation>> wallcontactinformationlist;
-    std::unordered_map<int, std::unordered_map<int, ContactInformation>> nextwallcontactinformationlist;
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> spherefibercontactinformationlist;
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> nextspherefibercontactinformationlist;
+
+
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> fiberfibercontactinformationlist;
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> nextfiberfibercontactinformationlist;
+
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> wallfibercontactinformationlist;
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> nextwallfibercontactinformationlist;
+
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> wallspherecontactinformationlist;
+    std::unordered_map<int, std::unordered_map<int, ContactInformation>> nextwallspherecontactinformationlist;
 
     std::map<PropertyTypeID, std::map<PropertyTypeID, double>> effectiveyoungsmodulus;
 

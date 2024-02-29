@@ -1,15 +1,15 @@
 # Simulation Parameters(s)
-DIMENSIONS, 0.2, 0.2, 0.2
+DIMENSIONS, 0.05, 0.05, 0.05
 TIMESTEP, 0.000001
-SHOWINTERVAL, 500
-TOTAL_TIME, 10
+SHOWINTERVAL, 10000
+TOTAL_TIME, 50
 GRAVITY, 0, -9.81, 0
 
 # Particle Properties
 # Format: CategoryTypeID, SubTypeID, Density, Radius, RollingFriction, SlidingFriction, YoungModulus, Restitution, PoissionRatio
-SPHERE_PROPERTIES, 0, 0, 1171, 0.0024, 0, 0.5, 900000000, 0.95, 0.3
+SPHERE_PROPERTIES, 0, 0, 1171, 0.0024, 0, 0.5, 900000000, 0.55, 0.3
 # Format: CategoryTypeID, SubTypeID, Density, Radius, RollingFriction, SlidingFriction, YoungModulus, Restitution, PoissionRatio, NormalModulus, ShearModulus, TwistModulus, BendingModulus, NodeNumbers, AspectRatio, BondDampingCoe
-FIBER_PROPERTIES, 2 , 0, 1171, 0.0024, 0, 0.5, 900000000, 0.95, 0.3,900000000, 900000000, 900000000, 900000000, 15,15, 0.003366
+FIBER_PROPERTIES, 2 , 0, 9171, 0.0024, 0, 0.5, 900000000, 0.55, 0.3,900000000, 900000000, 900000000, 900000000, 7,7, 0.003366
 
 # Wall Properties
 # Format: CategoryTypeID, SubTypeID, Density, thickness, RollingFriction, SlidingFriction, YoungModulus, Restitution, PoissionRatio
@@ -17,24 +17,24 @@ PLANEWALL_PROPERTIES 1, 0, 1200, 0.002, 0, 0.2, 3000000000, 0.95, 0.3
 
 
 # Boundary Conditions
-# Format: TYPE, id, CategoryTypeID, SubTypeID, state, lowerCornerX, lowerCornerY, lowerCornerZ, dimensionsX, dimensionsY, dimensionsZ, vx, vy, vz, rotate
-#BOUNDARY, RECTANGULARCONTAINER, 0, 1, 0, 0, 0, 0, 0, 0.05, 0.05, 0.05, 45, 0.025, 0.025, 0.025, 0, 0, 0
+# Format: TYPE, id, CategoryTypeID, SubTypeID, state, lowerCornerX, lowerCornerY, lowerCornerZ, dimensionsX, dimensionsY, dimensionsZ, rotate, centerx,centery,centerz,vx, vy, vz, 
+BOUNDARY, RECTANGULARCONTAINER, 0, 1, 0, 0, 0, 0, 0, 0.05, 0.05, 0.05, 0, 0.025, 0.025, 0.025, 0, 0, 0
 
 
 
 # Particles
 # Format: TYPE, id, CategoryTypeID, SubTypeID, state, x, y, z, vx, vy, vz
-PARTICLE, SPHERE, 0, 0, 0, 1,  0.02, 0.035, 0.02, 0, 0, 0
-PARTICLE, SPHERE, 1, 0, 0, 0,  0.02, 0.015, 0.02, 0, 0, 0
+#PARTICLE, SPHERE, 0, 0, 0, 1,  0.02, 0.035, 0.02, 0, 0, 0
+#PARTICLE, SPHERE, 0, 0, 0, 1,  0.02, 0.015, 0.02, 0.1, 0, 0
 # Format: TYPE, id, CategoryTypeID, SubTypeID, state(start/end), startx, starty, startz, vx, vy, vz, layout
-PARTICLE, FIBER, 0, 2, 0, 0,1, 0.01, 0.01,0.01, 0, 0, 0, X
-PARTICLE, FIBER, 0, 2, 0, 0,1, 0.01, 0.01,0.01, 0, 0, 0, Y
+PARTICLE, FIBER, 0, 2, 0, 1,1, 0.01, 0.045, 0.02, 0, 0, 0, X
+#PARTICLE, FIBER, 1, 2, 0, 1,1, 0.01, 0.014799,0.01, 0, 0, 0, X
 # Random Particle Generation
 # Format: TYPE, CategoryTypeID, SubTypeID, state, Count, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax
 #RANDOM_PARTICLE, SPHERE, 0, 0, 1, 50, 0.09, 0.12, 0.09, 0.12,0.09 ,0.12
 # Format: TYPE, CategoryTypeID, SubTypeID, startstate, endstate, Count, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax
-RANDOM_PARTICLE, FIBER, 2, 0, 1,1, 10, 0.09, 0.12, 0.09, 0.12,0.09 ,0.12
-RANDOM_PARTICLE, SPHERE, 0, 0, 1, 50, 0.09, 0.12, 0.09, 0.12,0.09 ,0.12
+#RANDOM_PARTICLE, FIBER, 2, 0, 1,1, 10, 0.09, 0.12, 0.09, 0.12,0.09 ,0.12
+#RANDOM_PARTICLE, SPHERE, 0, 0, 1, 50, 0.09, 0.12, 0.09, 0.12,0.09 ,0.12
 
 
 

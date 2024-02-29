@@ -16,7 +16,7 @@
             "name": "Release (MSVC)",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/tests/Release/TwoSphereImpact.exe",
+            "program": "${workspaceFolder}/build/tests/Release/GranularDamper.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

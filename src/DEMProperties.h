@@ -94,6 +94,7 @@ public:
     void generateRemainingParticles();
 
     void handleCollisions();
+    void bondforce();
     void applyExternalForces();
     void motion();
 

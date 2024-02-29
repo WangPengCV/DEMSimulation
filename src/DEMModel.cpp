@@ -27,6 +27,7 @@ void DEMModel::runSimulation()
     {
         //DEMproperties->applyExternalForces();
         DEMproperties->handleCollisions();
+        DEMproperties->bondforce();
         DEMproperties->motion();
         if(generate_number % 50000 == 0)
         {
@@ -41,6 +42,7 @@ void DEMModel::runSimulation()
     {
         //DEMproperties->applyExternalForces();
         DEMproperties->handleCollisions();
+        DEMproperties->bondforce();
         DEMproperties->motion();
         if(generate_number % 50000 == 0)
         {
@@ -65,6 +67,8 @@ void DEMModel::runSimulation()
     {
         DEMproperties->applyExternalForces();
         DEMproperties->handleCollisions();
+        DEMproperties->bondforce();
+
         DEMproperties->dotask();
 
         // Update visualization at specified intervals

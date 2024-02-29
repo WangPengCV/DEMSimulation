@@ -115,14 +115,14 @@ void GridBasedContactDetection::assignParticleToGrid(const std::vector<std::shar
     }
 }
 
-void GridBasedContactDetection::ParticleBroadPhase(const std::vector<std::shared_ptr<SphereParticle>> &particles,
+void GridBasedContactDetection::ParticleBroadPhase(const std::vector<std::shared_ptr<SphereParticle>> &sphereparticles,
                                                    const std::vector<std::shared_ptr<SphereCylinderBond>> &fiberbonds,
                                                    const std::vector<std::shared_ptr<SphereParticle>> &fibersphereparticles,
                                                    std::unordered_map<int, std::unordered_set<int>> &SScontactparis,
                                                    std::unordered_map<int, std::unordered_set<int>> &SFcontactparis,
                                                    std::unordered_map<int, std::unordered_set<int>> &FFcontactparis)
 {
-    assignParticleToGrid(particles, fiberbonds, fibersphereparticles);
+    assignParticleToGrid(sphereparticles, fiberbonds, fibersphereparticles);
     for (const auto &grid_entry : gridSaveSphereParticles)
     {
         const auto &sphere_in_grid = grid_entry.second;
@@ -159,7 +159,10 @@ void GridBasedContactDetection::ParticleBroadPhase(const std::vector<std::shared
             {
                 int id1 = *it1;
                 int id2 = *it2;
-                FFcontactparis[std::min(id1, id2)].insert(std::max(id1, id2));
+                if(fiberbonds[id1]->getFiberId() != fiberbonds[id2]->getFiberId())
+                {
+                    FFcontactparis[std::min(id1, id2)].insert(std::max(id1, id2));
+                }
             }
         }
     }

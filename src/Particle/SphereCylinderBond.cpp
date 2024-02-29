@@ -32,13 +32,18 @@ int SphereCylinderBond::getId() const
 {
     return this->id;
 }
+int SphereCylinderBond::getFiberId() const
+{
+    return this->fiberid;
+}
+
 const PropertyTypeID &SphereCylinderBond::getType() const
 {
     return type;
 }
 void SphereCylinderBond::updateBond(std::shared_ptr<SphereParticle> &sphere1, std::shared_ptr<SphereParticle> &sphere2, double timeStep)
 {
-    const auto &fiberproperties = manager->getFiberProperties(type);
+    const auto fiberproperties = manager->getFiberProperties(type);
     const Eigen::Vector3d &position1 = sphere1->getPosition();
     const Eigen::Vector3d &position2 = sphere2->getPosition();
 
@@ -102,13 +107,13 @@ void SphereCylinderBond::updateBond(std::shared_ptr<SphereParticle> &sphere1, st
 }
 
 void SphereCylinderBond::computeOverlap(const Eigen::Vector3d &node1position, const Eigen::Vector3d &node2position,
-                                        const Eigen::Vector3d &sphereposition, Eigen::Vector3d &projection)
+                                        const Eigen::Vector3d &sphereposition, double& t, Eigen::Vector3d &projection)
 {
     Eigen::Vector3d bondVector = node2position - node1position;           // Vector along the bond
     Eigen::Vector3d sphereToNode1Vector = sphereposition - node1position; // Vector from node1 to sphere center
 
     // Projection of sphereToNode1Vector onto bondVector
-    double t = sphereToNode1Vector.dot(bondVector) / bondVector.squaredNorm();
+    t = sphereToNode1Vector.dot(bondVector) / bondVector.squaredNorm();
 
     // Clamp t to the segment
     t = std::max(0.0, std::min(1.0, t));
@@ -116,8 +121,8 @@ void SphereCylinderBond::computeOverlap(const Eigen::Vector3d &node1position, co
     // Projection point on the bond segment
     projection = node1position + t * bondVector;
 }
-void SphereCylinderBond::computeOverlap(const Eigen::Vector3d &thisnode1position, const Eigen::Vector3d &thisnode2position, Eigen::Vector3d &projection1,
-                                        const Eigen::Vector3d &anothernode1position, const Eigen::Vector3d &anothernode2position, Eigen::Vector3d &projection2)
+void SphereCylinderBond::computeOverlap(const Eigen::Vector3d &thisnode1position, const Eigen::Vector3d &thisnode2position, double& s,
+                                        const Eigen::Vector3d &anothernode1position, const Eigen::Vector3d &anothernode2position, double& t)
 {
     Eigen::Vector3d u = thisnode2position - thisnode1position;
     Eigen::Vector3d v = anothernode2position - anothernode1position;
@@ -128,10 +133,8 @@ void SphereCylinderBond::computeOverlap(const Eigen::Vector3d &thisnode1position
     double c = v.dot(v); // Always >= 0
     double d = u.dot(w);
     double e = v.dot(w);
-    double s, t;
 
-    double det = a * c - b * b;
-
+    
     // The derivatives dR/ds(i,j) at the four corners of the domain.
     double f00 = d;
     double f10 = f00 + a;
@@ -208,7 +211,7 @@ void SphereCylinderBond::computeOverlap(const Eigen::Vector3d &thisnode1position
             // dR/ds = 0 on the segment. Compute the minimum of
             // H on [0,1].
             ComputeMinimumParameters(edge, end, b, c, e, g00, g10,
-                                     g01, g11, s, t);
+                                        g01, g11, s, t);
         }
     }
     else
@@ -240,8 +243,9 @@ void SphereCylinderBond::computeOverlap(const Eigen::Vector3d &thisnode1position
             t = zero;
         }
     }
-    projection1 = (1 - s) * thisnode1position + s * thisnode2position;
-    projection2 = (1 - t) * anothernode1position + t * anothernode2position;
+    //projection1 = (1 - s) * thisnode1position + s * thisnode2position;
+    //projection2 = (1 - t) * anothernode1position + t * anothernode2position;
+    
 }
 
 void SphereCylinderBond::computeOverlap(const Eigen::Vector3d &node1position, const Eigen::Vector3d &node2position,
