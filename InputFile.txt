@@ -1,7 +1,7 @@
 # Simulation Parameters(s)
 DIMENSIONS, 0.05, 0.05, 0.05
 TIMESTEP, 0.000001
-SHOWINTERVAL, 10000
+SHOWINTERVAL, 1000
 TOTAL_TIME, 50
 GRAVITY, 0, -9.81, 0
 
@@ -9,7 +9,7 @@ GRAVITY, 0, -9.81, 0
 # Format: CategoryTypeID, SubTypeID, Density, Radius, RollingFriction, SlidingFriction, YoungModulus, Restitution, PoissionRatio
 SPHERE_PROPERTIES, 0, 0, 1171, 0.0024, 0, 0.5, 900000000, 0.55, 0.3
 # Format: CategoryTypeID, SubTypeID, Density, Radius, RollingFriction, SlidingFriction, YoungModulus, Restitution, PoissionRatio, NormalModulus, ShearModulus, TwistModulus, BendingModulus, NodeNumbers, AspectRatio, BondDampingCoe
-FIBER_PROPERTIES, 2 , 0, 9171, 0.0024, 0, 0.5, 900000000, 0.55, 0.3,900000000, 900000000, 900000000, 900000000, 7,7, 0.003366
+FIBER_PROPERTIES, 2 , 0, 9171, 0.0024, 0, 0.5, 900000000, 0.55, 0.3,900000000, 900000000, 900000000, 900000000, 3,3, 0.003366
 
 # Wall Properties
 # Format: CategoryTypeID, SubTypeID, Density, thickness, RollingFriction, SlidingFriction, YoungModulus, Restitution, PoissionRatio
@@ -27,14 +27,14 @@ BOUNDARY, RECTANGULARCONTAINER, 0, 1, 0, 0, 0, 0, 0, 0.05, 0.05, 0.05, 0, 0.025,
 #PARTICLE, SPHERE, 0, 0, 0, 1,  0.02, 0.035, 0.02, 0, 0, 0
 #PARTICLE, SPHERE, 0, 0, 0, 1,  0.02, 0.015, 0.02, 0.1, 0, 0
 # Format: TYPE, id, CategoryTypeID, SubTypeID, state(start/end), startx, starty, startz, vx, vy, vz, layout
-PARTICLE, FIBER, 0, 2, 0, 1,1, 0.01, 0.045, 0.02, 0, 0, 0, X
+#PARTICLE, FIBER, 0, 2, 0, 1,1, 0.01, 0.045, 0.02, 0, 0, 0, X
 #PARTICLE, FIBER, 1, 2, 0, 1,1, 0.01, 0.014799,0.01, 0, 0, 0, X
 # Random Particle Generation
 # Format: TYPE, CategoryTypeID, SubTypeID, state, Count, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax
 #RANDOM_PARTICLE, SPHERE, 0, 0, 1, 50, 0.09, 0.12, 0.09, 0.12,0.09 ,0.12
 # Format: TYPE, CategoryTypeID, SubTypeID, startstate, endstate, Count, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax
-#RANDOM_PARTICLE, FIBER, 2, 0, 1,1, 10, 0.09, 0.12, 0.09, 0.12,0.09 ,0.12
-#RANDOM_PARTICLE, SPHERE, 0, 0, 1, 50, 0.09, 0.12, 0.09, 0.12,0.09 ,0.12
+#RANDOM_PARTICLE, FIBER, 2, 0, 1,1, 50, 0.0, 0.05, 0.0, 0.05,0.0, 0.05
+RANDOM_PARTICLE, SPHERE, 0, 0, 1, 1, 0.0, 0.05, 0.0, 0.05,0.0, 0.05
 
 
 

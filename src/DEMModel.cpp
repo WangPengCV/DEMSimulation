@@ -7,7 +7,7 @@ DEMModel::DEMModel(const std::string &filename)
     DEMproperties = std::make_shared<DEMProperties>();
     DEMproperties->loadFromFile(filename);
     vis = std::make_shared<Visualization>(*DEMproperties);
-
+    DEMproperties->initialSimulation();
 
     
 }
@@ -17,7 +17,6 @@ void DEMModel::runSimulation()
     
 
     double currentTime = 0.0;
-    DEMproperties->initialSimulation();
     double timeStep = DEMproperties->getTimestep();
     double totalTime = DEMproperties->getTotalTime();
     int showInterval = DEMproperties->getShowInterval();
@@ -38,7 +37,7 @@ void DEMModel::runSimulation()
     }
     //reach a quasi-static state
     generate_number =0;
-    while(DEMproperties->getAverageVelocity() > 0.001 || generate_number < 50000)
+    while(DEMproperties->getAverageVelocity() > 0.001 || generate_number < 100000)
     {
         //DEMproperties->applyExternalForces();
         DEMproperties->handleCollisions();

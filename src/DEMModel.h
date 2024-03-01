@@ -5,7 +5,6 @@
 #include "Visualization.h"
 #include <vector>
 #include <memory>
-
 class DEMModel {
 public:
     DEMModel(const std::string& filename);

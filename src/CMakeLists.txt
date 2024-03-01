@@ -23,6 +23,7 @@ target_link_libraries(DEM_lib
     ContactForce_lib
     DynamicBoundaryMover_lib
     EventTask_lib
+    ${MPI_CXX_LIBRARIES}
 )
 
 # Specify the include directories for the DEM_lib library
@@ -37,3 +38,4 @@ target_include_directories(DEM_lib PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/DynamicBoundaryMover
     ${CMAKE_CURRENT_SOURCE_DIR}/EventTask
 )
+

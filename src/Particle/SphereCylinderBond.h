@@ -34,7 +34,7 @@ public:
     static void computeOverlap(const Eigen::Vector3d &thisnode1position, const Eigen::Vector3d &thisnode2position, double& s,
                         const Eigen::Vector3d &anothernode1position, const Eigen::Vector3d &anothernode2position, double& t);
     static void computeOverlap(const Eigen::Vector3d &node1position, const Eigen::Vector3d &node2position,
-                        const std::shared_ptr<PlaneWall> &planewall, Eigen::Vector3d &projection);
+                        const std::shared_ptr<PlaneWall> &planewall, double &distance);
 
 private:
     int id;

@@ -222,7 +222,7 @@ void DEMProperties::parseLine(const std::string &line)
         // Assuming a method to store fiber to fiber contact information
         contactforce->getFiberFiberContactInformationList()[info.particleId1][info.particleId2] = info;
     }
-    else if (entryType == "WallToFiberContact")
+    else if (entryType == "FiberToPlanewallContact")
     {
         ContactInformation info;
         iss >> info.particleId1 >> info.particleId2;
@@ -489,7 +489,7 @@ void DEMProperties::saveToFile(const std::string &filename) const
         for (const auto &pair2 : pair1.second)
         {
             const ContactInformation &info = pair2.second;
-            file << "WallToFiberContact"
+            file << "FiberToPlanewallContact"
                  << ", "
                  << info.particleId1 << ", " // Note: For wall contacts, one ID may be a wall ID or similar identifier.
                  << info.particleId2 << ", "
@@ -673,7 +673,7 @@ void DEMProperties::parseRandomParticle(std::istringstream &iss)
         }
         else
         {
-            std::cout << "Can't generate all spheres. Failed spheres: " << failedSpheres << std::endl;
+            std::cout << "Can't generate all spheres, number of remaining spheres: " << failedSpheres << std::endl;
         }
     }
     else if (type == "FIBER")
@@ -683,24 +683,24 @@ void DEMProperties::parseRandomParticle(std::istringstream &iss)
         iss >> categoryId >> subTypeId >> startstate >> endstate >> count >> xmin >> xmax >> ymin >> ymax >> zmin >> zmax;
 
         const auto &fiberproperties = manager->getFiberProperties(PropertyTypeID(categoryId, subTypeId));
-        //FiberProperties copyfiberproperties = *fiberproperties;
+        // FiberProperties copyfiberproperties = *fiberproperties;
 
         int bond_id_index = fiberbonds.size();
         int sphere_id_index = fibershpereparticles.size();
         int fiber_id_index = fibers.size();
         gernerateFiberFlag = true;
+        int failedFibers = 0;
+        double elementlength = fiberproperties->getElementlength();
+        double fiberRadius = fiberproperties->getRadius();
         std::random_device rd;
         std::mt19937 gen(rd());
-        std::uniform_real_distribution<> disX(xmin, xmax);
-        std::uniform_real_distribution<> disY(ymin, ymax);
-        std::uniform_real_distribution<> disZ(zmin, zmax);
+        std::uniform_real_distribution<> disX(xmin , xmax );
+        std::uniform_real_distribution<> disY(ymin , ymax );
+        std::uniform_real_distribution<> disZ(zmin , zmax);
 
         std::uniform_real_distribution<> oriX(-1, 1);
         std::uniform_real_distribution<> oriY(-1, 1);
         std::uniform_real_distribution<> oriZ(-1, 1);
-        int failedFibers = 0;
-        double elementlength = fiberproperties->getElementlength();
-        double fiberRadius = fiberproperties->getRadius();
 
         for (int i = 0; i < count; ++i)
         {
@@ -708,6 +708,7 @@ void DEMProperties::parseRandomParticle(std::istringstream &iss)
             bool validPosition = false;
             int count_number = 0;
             std::vector<Eigen::Vector3d> tempsphereposition;
+            tempsphereposition.resize(fiberproperties->getNodenumber());
             do
             {
                 count_number++;
@@ -729,7 +730,7 @@ void DEMProperties::parseRandomParticle(std::istringstream &iss)
 
                     Eigen::Vector3d position = startPos + k * elementlength * orientation;
 
-                    tempsphereposition.push_back(position);
+                    tempsphereposition[k] = position;
                 }
 
                 for (const auto &plane : planewalls)
@@ -739,16 +740,10 @@ void DEMProperties::parseRandomParticle(std::istringstream &iss)
                     const Eigen::Vector3d &planeNormal = plane->getNormal();
                     for (int j = 0; j < tempsphereposition.size() - 1; ++j)
                     {
-                        Eigen::Vector3d projection;
-                        SphereCylinderBond::computeOverlap(tempsphereposition[j], tempsphereposition[j + 1], plane, projection);
-                        // Compute the vector from a point on the plane to the sphere's center
-                        Eigen::Vector3d vecToSphereCenter = projection - planePoint;
-
-                        // Compute the distance from the sphere's center to the plane
-                        double distanceToPlane = vecToSphereCenter.dot(planeNormal);
-
-                        // Calculate the overlap (penetration depth)
-                        double overlap_pw = fiberRadius - std::abs(distanceToPlane);
+                        double distanceToPlane;
+                        SphereCylinderBond::computeOverlap(tempsphereposition[j], tempsphereposition[j + 1], plane, distanceToPlane);
+                       
+                        double overlap_pw = fiberRadius - distanceToPlane;
                         if (overlap_pw > 0)
                         {
                             validPosition = false;
@@ -767,16 +762,10 @@ void DEMProperties::parseRandomParticle(std::istringstream &iss)
                         const Eigen::Vector3d &planeNormal = plane->getNormal();
                         for (int j = 0; j < tempsphereposition.size() - 1; ++j)
                         {
-                            Eigen::Vector3d projection;
-                            SphereCylinderBond::computeOverlap(tempsphereposition[j], tempsphereposition[j + 1], plane, projection);
-                            // Compute the vector from a point on the plane to the sphere's center
-                            Eigen::Vector3d vecToSphereCenter = projection - planePoint;
+                            double distanceToPlane;
+                            SphereCylinderBond::computeOverlap(tempsphereposition[j], tempsphereposition[j + 1], plane, distanceToPlane);
 
-                            // Compute the distance from the sphere's center to the plane
-                            double distanceToPlane = vecToSphereCenter.dot(planeNormal);
-
-                            // Calculate the overlap (penetration depth)
-                            double overlap_pw = fiberRadius - std::abs(distanceToPlane);
+                            double overlap_pw = fiberRadius - distanceToPlane;
                             if (overlap_pw > 0)
                             {
                                 validPosition = false;
@@ -844,7 +833,7 @@ void DEMProperties::parseRandomParticle(std::istringstream &iss)
                     }
                 }
 
-            } while (!validPosition && count_number < 100);
+            } while (!validPosition && count_number < 50000);
             if (validPosition)
             {
                 auto fiber = std::make_shared<Fiber>(fiber_id_index, PropertyTypeID(categoryId, subTypeId), startstate, endstate, manager);
@@ -861,7 +850,7 @@ void DEMProperties::parseRandomParticle(std::istringstream &iss)
 
                     // Determine the state of the SphereParticle
                     int state = (k == 0) ? startstate : (k == fiberproperties->getNodenumber() - 1) ? endstate
-                                                                                                       : 1;
+                                                                                                    : 1;
                     auto sp = createSphereParticle(state);
                     fibershpereparticles.push_back(sp);
 
@@ -935,7 +924,7 @@ void DEMProperties::parseRandomParticle(std::istringstream &iss)
         }
         else
         {
-            std::cout << "Can't generate all fibers. Failed fiber: " << failedFibers << std::endl;
+            std::cout << "Can't generate all fibers, number of remaining fibers: " << failedFibers << std::endl;
         }
     }
 }
@@ -1039,7 +1028,11 @@ double DEMProperties::getAverageVelocity()
     {
         totalVelocity += sphere->getVelocity().norm();
     }
-    return totalVelocity / sphereparticles.size();
+    for (const auto &sphere : fibershpereparticles)
+    {
+        totalVelocity += sphere->getVelocity().norm();
+    }
+    return totalVelocity / (sphereparticles.size() + fibershpereparticles.size());
 }
 void DEMProperties::initialSimulation()
 {
@@ -1052,17 +1045,16 @@ void DEMProperties::initialSimulation()
     double minRadius = std::numeric_limits<double>::max();
     double mindensityL = std::numeric_limits<double>::max();
 
-
     for (const auto &particleproperties : manager->getParticleProperties())
     {
-        if (auto& sphereProps = std::dynamic_pointer_cast<SphereProperties>(particleproperties.second))
+        if (auto &sphereProps = std::dynamic_pointer_cast<SphereProperties>(particleproperties.second))
         {
             double radius = sphereProps->getRadius();
             if (radius > maxRadius)
             {
                 maxRadius = radius;
             }
-            if(radius < minRadius)
+            if (radius < minRadius)
             {
                 minRadius = radius;
             }
@@ -1077,14 +1069,14 @@ void DEMProperties::initialSimulation()
                 mindensity = density;
             }
         }
-        else if (auto& fiberProps = std::dynamic_pointer_cast<FiberProperties>(particleproperties.second))
+        else if (auto &fiberProps = std::dynamic_pointer_cast<FiberProperties>(particleproperties.second))
         {
             double radius = fiberProps->getRadius();
             if (radius > maxRadius)
             {
                 maxRadius = radius;
             }
-            if(radius < minRadius)
+            if (radius < minRadius)
             {
                 minRadius = radius;
             }
@@ -1094,35 +1086,34 @@ void DEMProperties::initialSimulation()
                 maxYoungmodulus = Youngmodulus;
             }
             double Bondmodulus = fiberProps->getNormalmodulus();
-            if(Bondmodulus > maxBondmodulus)
+            if (Bondmodulus > maxBondmodulus)
             {
                 maxBondmodulus = Bondmodulus;
             }
             Bondmodulus = fiberProps->getShearmodulus();
-            if(Bondmodulus > maxBondmodulus)
+            if (Bondmodulus > maxBondmodulus)
             {
                 maxBondmodulus = Bondmodulus;
             }
             Bondmodulus = fiberProps->getTwistmodulus();
-            if(Bondmodulus > maxBondmodulus)
+            if (Bondmodulus > maxBondmodulus)
             {
                 maxBondmodulus = Bondmodulus;
             }
             Bondmodulus = fiberProps->getBendingmodulus();
-            if(Bondmodulus > maxBondmodulus)
+            if (Bondmodulus > maxBondmodulus)
             {
                 maxBondmodulus = Bondmodulus;
             }
 
-
             double Bondlength = fiberProps->getElementlength();
-            if(Bondlength < minBondlength)
+            if (Bondlength < minBondlength)
             {
                 minBondlength = Bondlength;
             }
 
-            double densityL = fiberProps->getNodemass()  / Bondlength;
-            if(densityL < mindensityL)
+            double densityL = fiberProps->getNodemass() / Bondlength;
+            if (densityL < mindensityL)
             {
                 mindensityL = densityL;
             }
@@ -1135,18 +1126,12 @@ void DEMProperties::initialSimulation()
         }
     }
 
-
-    
-
-
-   
-
-    double temp_t = 0.1 * minBondlength * sqrt(mindensity / (maxBondmodulus*PI*maxRadius*maxRadius));
+    double temp_t = 0.1 * minBondlength * sqrt(mindensity / (maxBondmodulus * PI * maxRadius * maxRadius));
     if (timestep > temp_t)
     {
         timestep = temp_t;
     }
-    temp_t = (0.1 * 2*PI*minRadius) / (0.1631 * 0.3 + 0.8766) * sqrt(1.3 * mindensity / (2*maxYoungmodulus));
+    temp_t = (0.1 * 2 * PI * minRadius) / (0.1631 * 0.3 + 0.8766) * sqrt(1.3 * mindensity / (2 * maxYoungmodulus));
     if (timestep > temp_t)
     {
         timestep = temp_t;
@@ -1272,12 +1257,11 @@ void DEMProperties::handleCollisions()
 }
 void DEMProperties::bondforce()
 {
-     for (const auto &particle : fiberbonds)
+    for (const auto &particle : fiberbonds)
     {
-        auto& node1 = fibershpereparticles[particle->getNode1()];
-        auto& node2 = fibershpereparticles[particle->getNode2()];
-        particle->updateBond(node1,node2,timestep);
-
+        auto &node1 = fibershpereparticles[particle->getNode1()];
+        auto &node2 = fibershpereparticles[particle->getNode2()];
+        particle->updateBond(node1, node2, timestep);
     }
 }
 void DEMProperties::applyExternalForces()
@@ -1319,9 +1303,7 @@ void DEMProperties::motion()
         sphere->resetForce();
         sphere->resetTorque();
     }
-    
-    
-    
+
     // motion rectangularcontainer
     if (rectangularcontainer)
     {
@@ -1361,7 +1343,6 @@ void DEMProperties::motion()
 
         rectangularcontainer->resetForce();
     }
-
 
     contactforce->updateContactInformation();
 }

@@ -249,30 +249,28 @@ void SphereCylinderBond::computeOverlap(const Eigen::Vector3d &thisnode1position
 }
 
 void SphereCylinderBond::computeOverlap(const Eigen::Vector3d &node1position, const Eigen::Vector3d &node2position,
-                                        const std::shared_ptr<PlaneWall> &planewall, Eigen::Vector3d &projection)
+                                        const std::shared_ptr<PlaneWall> &planewall, double &distance)
 {
-    // Calculate the direction vector of the line
-    Eigen::Vector3d lineDirection = (node2position - node1position).normalized();
+   
+     // Retrieve the plane wall's point and normal
+    Eigen::Vector3d planePoint = planewall->getCorner1();
 
-    const Eigen::Vector3d &planeNormal = planewall->getNormal();
-    // Calculate the dot product between the line's direction vector and the plane's normal
-    double dotProduct = lineDirection.dot(planeNormal);
+    Eigen::Vector3d planeNormal = planewall->getNormal();
 
-    if (std::abs(dotProduct) < 1e-6)
+    // Compute the vector from a point on the plane to the sphere's center
+    Eigen::Vector3d vecToSphereCenter1 = node1position - planePoint;
+    // Compute the distance from the sphere's center to the plane
+    double distanceToPlane1 = vecToSphereCenter1.dot(planeNormal);
+
+    if (distanceToPlane1 < 0)
     {
-        projection = 0.5 * (node1position + node2position);
+        planeNormal = -planeNormal;
+        distanceToPlane1 = -distanceToPlane1;
     }
-    else
-    {
+    Eigen::Vector3d vecToSphereCenter2 = node2position - planePoint;
+    double distanceToPlane2 = vecToSphereCenter2.dot(planeNormal);
+    distance = distanceToPlane1 > distanceToPlane2 ? distanceToPlane2 : distanceToPlane1;
 
-        // return the closest position to plane
-        Eigen::Vector3d planePoint = planewall->getCorner1(); // Assuming corner1 is a point on the plane
-
-        if ((node1position - planePoint).norm() < (node2position - planePoint).norm())
-            projection = node1position;
-        else
-            projection = node2position;
-    }
 }
 
 double SphereCylinderBond::GetClampedRoot(double const &slope, double const &h0, double const &h1)
